@@ -1,23 +1,25 @@
-import logo from './logo.svg';
 import './App.css';
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Route, Routes } from "react-router";
+import MainHomePage from './page/MainHomePage'
+import Navbar from './component/Navbar';
 
-function App() {
+const App = () => {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+      <Navbar />
+      <MainHomePage />
+
+      <Routes>
+        {/* <Route path="/브랜드" element={<Brand />} />
+        <Route path="/스토어" element={<Store />} />
+        <Route path="/이벤트" element={<Event />} />
+        <Route path="/커뮤니티" element={<Community />} /> */}
+      </Routes>
+
+
+
     </div>
   );
 }
