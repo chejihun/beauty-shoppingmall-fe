@@ -1,55 +1,108 @@
 import React from 'react'
 import '../style/navbar.css'
-import { useNavigate } from "react-router-dom";
-import { FaRegUser } from 'react-icons/fa';
+import { useNavigate, useLocation } from "react-router-dom";
+import { FaRegUser, FaFacebookF, FaInstagram } from 'react-icons/fa';
 import { BiSearch, BiShoppingBag } from 'react-icons/bi';
+import { TfiYoutube } from 'react-icons/tfi';
 import { HiMenu } from 'react-icons/hi';
+import { ROUTE_PATH } from '../constants/route.path'
 
 const Navbar = () => {
-
+  const location = useLocation();
   const navigate = useNavigate();
 
   const menuList = [
-    "브랜드",
-    "스토어",
-    "이벤트",
-    "공지사항"
+    { label: "브랜드", path: ROUTE_PATH.BRAND },
+    { label: "스토어", path: ROUTE_PATH.STORE },
+    { label: "이벤트", path: ROUTE_PATH.EVENT },
+    { label: "공지사항", path: ROUTE_PATH.NOTICE },
   ];
 
-  const handleMenuClick = (menu) => {
-    navigate(`/${menu}`);
+  const handleMenuClick = (path) => {
+    navigate(`/${path}`);
   };
 
+  const handleLogoClick = () => {
+    navigate('/');
+  };
+
+  const homePage = location.pathname === '/';
+
   return (
-    <div className='navbar-area'>
+    <div className={`navbar-area ${homePage ? 'home-page' : ''}`}>
       {/* 기본 웹 메뉴 */}
       <div className='nav-web-menu'>
         <div className='nav-menu1'>
-          <h2 className='web-logo'>BUU</h2>
+          <h2
+            className={`web-logo ${homePage ? 'white-text' : 'black-text'}`}
+            onClick={() => handleLogoClick()}
+          >
+            N<span>&</span>B
+          </h2>
           {menuList.map((menu, index) => (
-            <div className='nav-list'
+            <div
+              className={`nav-list ${homePage ? 'white-text' : 'black-text'}`}
               key={index}
-              onClick={() => handleMenuClick(menu)}>
-              {menu}
+              onClick={() => handleMenuClick(menu.path)}
+            >
+              {menu.label}
             </div>
           ))}
+
+          {/* 아이콘 메뉴 */}
+          <div className='web-i-bottom-menu'>
+            <div
+              className={`web-i-bottom-menu-list ${homePage ? 'white-text' : 'black-text'}`}
+            >
+              <FaFacebookF />
+            </div>
+            <div
+              className={`web-i-bottom-menu-list ${homePage ? 'white-text' : 'black-text'}`}
+            >
+              <FaInstagram />
+            </div>
+            <div
+              className={`web-i-bottom-menu-list ${homePage ? 'white-text' : 'black-text'}`}
+            >
+              <TfiYoutube />
+            </div>
+          </div>
+
         </div>
         <div className='nav-menu2'>
-          <div className='nav-i-list'><FaRegUser /></div>
-          <div className='nav-i-list'><BiShoppingBag /></div>
-          <div className='nav-i-list'><BiSearch /></div>
+          <div
+            onClick={() => navigate("/login")}
+            className={`nav-i-list ${homePage ? 'white-text' : 'black-text'}`}
+          >
+            <FaRegUser className='nav-i-login' />
+            <span className="i-message i-message-login">로그인 / 회원가입</span>
+          </div>
+          <div
+            className={`nav-i-list ${homePage ? 'white-text' : 'black-text'}`}
+          >
+            <BiShoppingBag />
+            <span className="i-message i-message-shop">장바구니</span>
+          </div>
+          <div
+            className={`nav-i-list ${homePage ? 'white-text' : 'black-text'}`}
+          >
+            <BiSearch />
+            <span className="i-message i-message-search">검색</span>
+          </div>
         </div>
       </div>
 
       {/* 반응형 앱 메뉴 */}
       <div className='nav-app-menu'>
         <div className='app-menu'>
-          <h2 className='app-logo'>BUU</h2>
+          <h2 className='app-logo'>N<span>&</span>B</h2>
           <div>
-            <HiMenu className='nav-i-menu'/>
+            <HiMenu className='nav-i-menu' />
           </div>
         </div>
       </div>
+
+
     </div>
   )
 }

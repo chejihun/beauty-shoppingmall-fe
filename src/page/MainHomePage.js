@@ -1,11 +1,11 @@
 import React from 'react'
+import SlideBanner from '../component/SlideBanner';
 
 const MainHomePage = () => {
   return (
     <div className='home'>
-      <div className='box1'>
-        화면1
-      </div>
+      
+      <SlideBanner />
       <div  className='box2'>
         화면2
       </div>

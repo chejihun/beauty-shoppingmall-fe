@@ -3,10 +3,16 @@
   justify-content: space-between;
 }
 .web-logo {
-  font-family: 'Noto Sans KR', sans-serif;
-  font-weight: 600;
+  font-family: 'Forum', serif;
+  font-weight: 400;
   color: #ececec;
   margin-bottom: 20px;
+  cursor: pointer;
+  font-size: 40px;
+  letter-spacing: 2px;
+}
+.web-logo span {
+  font-size: 30px;
 }
 .nav-menu1, .nav-menu2 {
   position: fixed;
@@ -42,10 +48,57 @@
   font-size: 24px;
   width: 30px;
   text-align: center;
+  position: relative;
+}
+.nav-i-list:hover .i-message {
+  display: block;
 }
 .nav-app-menu {
   display: none;
 }
+.white-text {
+  color: white;
+}
+.black-text {
+  color: black;
+}
+.i-message {
+  display: none;
+  position: absolute;
+  background-color: #3f3f3f; 
+  color: #e2e2e2;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 500;
+  padding: 5px 8px; 
+  border-radius: 4px;
+  right : 35px;
+  top: 13px;
+  z-index: 10; 
+  font-size: 12px;
+  text-align: center;
+  height: 30px;
+}
+.i-message-login {
+  width: 110px;
+}
+.i-message-shop {
+  width: 66px;
+}
+.i-message-search {
+  width: 42px;
+}
+.web-i-bottom-menu {
+  display: flex;
+  position: fixed;
+  bottom: 40px;
+  font-size: 25px;
+  color: #ececec;
+}
+.web-i-bottom-menu-list {
+  cursor: pointer;
+  margin-right: 15px;
+}
+
 @media screen and (max-width: 768px) {
   .navbar-area {
     position: fixed;
@@ -74,9 +127,13 @@
   .app-logo {
     width: 80px;
     color: #000;
-    font-weight: 600;
-    font-size: 32px;
-    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 400;
+    font-size: 35px;
+    font-family: 'Forum', serif;
+    letter-spacing: 2px;
+  }
+  .app-logo span {
+    font-size: 28px;
   }
   .nav-i-menu {
     width: 50px;

@@ -1,0 +1,27 @@
+.login-area, .register-area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.login-form {
+  width: 40%;
+}
+.login-form-title {
+  text-align: center;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 600;
+  margin-bottom: 30px;
+}
+.login-form-id {
+  margin-top: 20px;
+}
+.login-button-area {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+  align-items: center;
+}
+.register-btn {
+  margin-top: 20px;
+}
