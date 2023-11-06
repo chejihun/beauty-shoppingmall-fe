@@ -1,10 +1,13 @@
-import React from 'react'
-
+import React from "react"
+import "../style/brand.css"
 const BrandPage = () => {
 
 
   return (
-    <div className='ddd'>BrandPage</div>
+    <div className="ddd">
+
+      BrandPage
+    </div>
   )
 }
 

@@ -1,8 +1,8 @@
-import React from 'react'
+import React from "react"
 
 const NoticePage = () => {
   return (
-    <div className='ddd'>NoticePage</div>
+    <div className="ddd">NoticePage</div>
   )
 }
 
