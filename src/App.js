@@ -12,25 +12,34 @@ import LoginPage from "./page/LoginPage";
 import RegisterPage from "./page/RegisterPage";
 import ToastMessage from "./component/ToastMessage";
 
+import { userAction } from "./action/userAction";
+import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect } from "react";
+
 const App = () => {
-  
-  const user = null;
+
+  const { user } = useSelector((state) => (state.user))
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(userAction.loginWithToken());
+  }, []);
 
   return (
     <div className="App">
 
-        <Navbar user={user} />
-        <ToastMessage />
+      <Navbar user={user} />
+      <ToastMessage />
 
-        <Routes>
-          <Route path="/" element={<MainHomePage />} />
-          <Route path={ROUTE_PATH.BRAND} element={<BrandPage />} />
-          <Route path={ROUTE_PATH.STORE} element={<StorePage />} />
-          <Route path={ROUTE_PATH.EVENT} element={<EventPage />} />
-          <Route path={ROUTE_PATH.NOTICE} element={<NoticePage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
-        </Routes>
+      <Routes>
+        <Route path="/" element={<MainHomePage />} />
+        <Route path={ROUTE_PATH.BRAND} element={<BrandPage />} />
+        <Route path={ROUTE_PATH.STORE} element={<StorePage />} />
+        <Route path={ROUTE_PATH.EVENT} element={<EventPage />} />
+        <Route path={ROUTE_PATH.NOTICE} element={<NoticePage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+      </Routes>
 
     </div >
   );

@@ -7,9 +7,11 @@ import { TfiYoutube } from "react-icons/tfi";
 import { HiMenu } from "react-icons/hi";
 import { ROUTE_PATH } from "../constants/route.path";
 import { useDispatch, useSelector } from "react-redux";
+import { userAction } from "../action/userAction";
 
 const Navbar = ({ user }) => {
 
+  const dispatch = useDispatch();
   const location = useLocation();
   const navigate = useNavigate();
   const isMobile = window.navigator.userAgent.indexOf("Mobile") !== -1;
@@ -32,7 +34,7 @@ const Navbar = ({ user }) => {
   const homePage = location.pathname === "/";
 
   const logout = () => {
-    //dispatch()
+    dispatch(userAction.logout());
   };
 
   return (
@@ -84,9 +86,9 @@ const Navbar = ({ user }) => {
           )}
 
           <div>
+
             {user ? (
               <div onClick={logout} className={`nav-i-list ${homePage ? "white-text" : "black-text"}`}>
-                <BiLogOut className="nav-i-login" />
                 {!isMobile && <BiLogOut className="nav-i-login" />}
                 <span className="i-message i-message-login">로그아웃</span>
               </div>
@@ -97,6 +99,7 @@ const Navbar = ({ user }) => {
                 <span className="i-message i-message-login">로그인 / 회원가입</span>
               </div>
             )}
+            
           </div>
           <div
             className={`nav-i-list ${homePage ? "white-text" : "black-text"}`}
