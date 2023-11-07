@@ -1,24 +1,39 @@
 import React, { useState } from "react";
-import { Container, Form, Button } from "react-bootstrap";
+import { Container, Form, Button, Alert } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import "../style/login.css";
+import { useDispatch, useSelector } from "react-redux";
+import { userAction } from "../action/userAction";
+
 
 const LoginPage = () => {
 
+  const user = useSelector((state) => (state.user.user));
+  const error = useSelector((state) => (state.user.error));
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const loginWithEmail = (event) => {
     event.preventDefault();
+    dispatch(userAction.loginWithEmail({ email, password }));
   };
 
-  return (
-    <div className="zzz">
-      <Container className="login-area">
+  if (user) {
+    navigate("/")
+  }
 
+  return (
+    <div>
+      <Container className="login-area">
         <Form className="login-form" onSubmit={loginWithEmail}>
           <h2 className="login-form-title">로그인</h2>
+          {error && (
+            <div className="error-message">
+              <Alert variant="danger">{error}</Alert>
+            </div>
+          )}
           <Form.Group className="login-form-id" controlId="formBasicEmail">
             <Form.Label>Email</Form.Label>
             <Form.Control
