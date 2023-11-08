@@ -9,8 +9,9 @@ import { ROUTE_PATH } from "../constants/route.path";
 import { useDispatch, useSelector } from "react-redux";
 import { userAction } from "../action/userAction";
 
-const Navbar = ({ user }) => {
-
+const Navbar = () => {
+  
+  const { user } = useSelector((state) => (state.user))
   const dispatch = useDispatch();
   const location = useLocation();
   const navigate = useNavigate();
@@ -90,7 +91,7 @@ const Navbar = ({ user }) => {
             {user ? (
               <div onClick={logout} className={`nav-i-list ${homePage ? "white-text" : "black-text"}`}>
                 {!isMobile && <BiLogOut className="nav-i-login" />}
-                <span className="i-message i-message-login">로그아웃</span>
+                <span className="i-message i-message-logout">로그아웃</span>
               </div>
             ) : (
               <div onClick={() => navigate("/login")} className={`nav-i-list ${homePage ?  "white-text" : "black-text"}`}>

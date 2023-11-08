@@ -1,14 +1,14 @@
 import React from "react";
 import SlideBanner from "../component/SlideBanner";
+import HomeBrandPage from "../component/HomeBrandPage";
+
 
 const MainHomePage = () => {
   return (
     <div className="home">
       
       <SlideBanner />
-      <div  className="box2">
-        화면2
-      </div>
+      <HomeBrandPage />
       <div  className="box3">
         화면3
       </div>
