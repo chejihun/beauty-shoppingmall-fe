@@ -1,0 +1,52 @@
+.setting-area {
+ /* background-color: aqua; */
+}
+.add-btn{
+  margin : 50px 0  20px 0;
+}
+.error-message{
+  color: red;
+  font-size: 10pt;
+  padding-right: 10px;
+}
+
+
+/* itemDialog style */
+
+.modal-area {
+  width: 800px;
+  top: 10%;
+}
+.dialog-form-area {
+  padding:25px;
+}
+.description {
+  margin: 25px 0px;
+}
+.stock {
+  margin-bottom: 25px;
+}
+.stock-mt {
+  margin-top: 20px;
+}
+.stock-mb {
+  margin-bottom: 10px;
+}
+.delete-btn {
+  width: 50px;
+  height: 38px;
+  box-sizing: border-box;
+}
+.delete-btn-icon {
+  font-size: 24px;
+}
+.stock-add-btn {
+  margin-left: 10px;
+}
+.upload-image{
+  max-width: 458px;
+  width:100%;
+}
+.cloudinary {
+  margin: 0 10px;
+}

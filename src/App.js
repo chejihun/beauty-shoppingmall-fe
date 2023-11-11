@@ -14,6 +14,7 @@ import ToastMessage from "./component/ToastMessage";
 import { userAction } from "./action/userAction";
 import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect } from "react";
+import AdminPage from "./page/AdminPage";
 
 
 const App = () => {
@@ -38,6 +39,9 @@ const App = () => {
         <Route path={ROUTE_PATH.NOTICE} element={<NoticePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
+        <Route path="/admin" element={<AdminPage />} />
+        
+
       </Routes>
 
     </div >

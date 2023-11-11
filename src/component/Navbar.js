@@ -5,12 +5,13 @@ import { FaRegUser, FaFacebookF, FaInstagram } from "react-icons/fa";
 import { BiSearch, BiShoppingBag, BiLogOut } from "react-icons/bi";
 import { TfiYoutube } from "react-icons/tfi";
 import { HiMenu } from "react-icons/hi";
+import { FiSettings } from "react-icons/fi";
 import { ROUTE_PATH } from "../constants/route.path";
 import { useDispatch, useSelector } from "react-redux";
 import { userAction } from "../action/userAction";
 
 const Navbar = () => {
-  
+
   const { user } = useSelector((state) => (state.user))
   const dispatch = useDispatch();
   const location = useLocation();
@@ -59,7 +60,7 @@ const Navbar = () => {
             </div>
           ))}
 
-          {/* 아이콘 메뉴 */}
+          {/* sns 아이콘 메뉴 */}
           <div className="web-i-bottom-menu">
             <div
               className={`web-i-bottom-menu-list ${homePage ? "white-text" : "black-text"}`}
@@ -77,36 +78,27 @@ const Navbar = () => {
               <TfiYoutube />
             </div>
           </div>
-
         </div>
         <div className="nav-menu2">
-          {user && user.level === "admin" && (
-            <Link to="/admin/product?page=1" className="link-area">
-              Admin page
-            </Link>
-          )}
-
           <div>
-
             {user ? (
               <div onClick={logout} className={`nav-i-list ${homePage ? "white-text" : "black-text"}`}>
                 {!isMobile && <BiLogOut className="nav-i-login" />}
                 <span className="i-message i-message-logout">로그아웃</span>
               </div>
             ) : (
-              <div onClick={() => navigate("/login")} className={`nav-i-list ${homePage ?  "white-text" : "black-text"}`}>
+              <div onClick={() => navigate("/login")} className={`nav-i-list ${homePage ? "white-text" : "black-text"}`}>
 
                 {!isMobile && <FaRegUser className="nav-i-login" />}
                 <span className="i-message i-message-login">로그인 / 회원가입</span>
               </div>
             )}
-            
           </div>
           <div
             className={`nav-i-list ${homePage ? "white-text" : "black-text"}`}
           >
             <BiShoppingBag />
-            <span className="i-message i-message-shop">장바구니</span>
+            <span className="i-message i-message-logout">장바구니</span>
           </div>
           <div
             className={`nav-i-list ${homePage ? "white-text" : "black-text"}`}
@@ -114,6 +106,16 @@ const Navbar = () => {
             <BiSearch />
             <span className="i-message i-message-search">검색</span>
           </div>
+
+          {/* admin 계정으로 로그인시 보이는 설정 페이지 */}
+          {user && user.level === "admin" && (
+            <Link to="/admin"
+              className={`nav-i-list ${homePage ? "white-text" : "black-text"}`}
+            >
+              <FiSettings />
+              <span className="i-message i-message-logout">상품 설정</span>
+            </Link>
+          )}
         </div>
       </div>
 
