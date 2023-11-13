@@ -7,10 +7,7 @@ const loginWithToken = () => async (dispatch) => {
     dispatch({ type: types.LOGIN_WITH_TOKEN_REQUEST })
     const response = await api.get("/user/me")
     if (response.status !== 200) { throw new Error(response.error) }
-
-    console.log("rrr", response)
-
-    dispatch({ type: types.LOGIN_WITH_TOKEN_SUCCESS, payload: response.data.user })
+    dispatch({ type: types.LOGIN_WITH_TOKEN_SUCCESS, payload: response.data })
   } catch (error) {
     dispatch({ type: types.LOGIN_WITH_TOKEN_FAIL, payload: error });
     dispatch(logout())
@@ -54,7 +51,6 @@ const logout = () => async (dispatch) => {
   dispatch({ type: types.LOGOUT })
   sessionStorage.removeItem("token")
 };
-
 
 export const userAction = {
   loginWithToken,

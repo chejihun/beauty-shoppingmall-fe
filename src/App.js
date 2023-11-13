@@ -11,14 +11,14 @@ import { ROUTE_PATH } from "./constants/route.path";
 import LoginPage from "./page/LoginPage";
 import RegisterPage from "./page/RegisterPage";
 import ToastMessage from "./component/ToastMessage";
-
 import { userAction } from "./action/userAction";
 import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect } from "react";
+import AdminPage from "./page/AdminPage";
+
 
 const App = () => {
 
-  const { user } = useSelector((state) => (state.user))
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -28,7 +28,7 @@ const App = () => {
   return (
     <div className="App">
 
-      <Navbar user={user} />
+      <Navbar />
       <ToastMessage />
 
       <Routes>
@@ -39,6 +39,9 @@ const App = () => {
         <Route path={ROUTE_PATH.NOTICE} element={<NoticePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
+        <Route path="/admin" element={<AdminPage />} />
+        
+
       </Routes>
 
     </div >

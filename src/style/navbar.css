@@ -15,6 +15,7 @@
   font-size: 30px;
 }
 .nav-menu1, .nav-menu2 {
+  z-index: 99;
   position: fixed;
   width: 250px;
   height: 100%;
@@ -79,8 +80,8 @@
 .i-message-login {
   width: 110px;
 }
-.i-message-shop {
-  width: 66px;
+.i-message-logout {
+  width: 68px;
 }
 .i-message-search {
   width: 42px;
@@ -102,6 +103,7 @@
     position: fixed;
     justify-content: space-between;
     background-color: skyblue;
+    z-index: 99;
   }
   .nav-web-menu {
     display: none;
@@ -111,7 +113,7 @@
     position: fixed;
     justify-content: space-between;
     width: 100%;
-    background-color: #ececec;
+    /* background-color: #ececec; */
     padding: 6px 13px 0 16px;
     box-sizing: border-box;
     height: 55px;
@@ -126,17 +128,18 @@
     width: 80px;
     color: #000;
     font-weight: 400;
-    font-size: 35px;
+    font-size: 40px;
     font-family: 'Forum', serif;
     letter-spacing: 2px;
+    padding-top: 2px;
   }
   .app-logo span {
-    font-size: 28px;
+    font-size: 29px;
   }
   .nav-i-menu {
     width: 50px;
-    padding-top: 3px;
-    height: 38px;
+    padding-top: 5px;
+    height: 45px;
     cursor: pointer;
   }
 }
