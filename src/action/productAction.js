@@ -3,7 +3,6 @@ import * as types from "../constants/product.constants";
 import { toast } from "react-toastify";
 import { commonUiAction } from "./commonUiAction";
 
-<<<<<<< HEAD
 const getProductList = (query) => async (dispatch) => {
   try {
     dispatch({ type: types.PRODUCT_GET_REQUEST })
@@ -17,21 +16,6 @@ const getProductList = (query) => async (dispatch) => {
     console.log("response", response.data.data)
   } catch (error) {
     dispatch({ type: types.PRODUCT_GET_FAIL, payload: error.error })
-=======
-const getProductList = (query) => async (dispatch) => { 
-  try {
-    dispatch({type:types.PRODUCT_GET_REQUEST})
-    const response = await api.get("/product", {
-      params:{...query}
-    })
-   if(response.status !== 200 ) {
-    throw new Error(response.error) 
-  }
-  dispatch ({type:types.PRODUCT_GET_SUCCESS, payload:response.data.data})
-  console.log("response",response.data.data)
-  }catch (error) {
-    dispatch({type:types.PRODUCT_GET_FAIL, payload:error.error})
->>>>>>> bb20e1efd59628653ca77e05471b601abfdf39d2
     dispatch(commonUiAction.showToastMessage(error.error, "error"))
   }
 };
@@ -40,7 +24,6 @@ const createProduct = (formData) => async (dispatch) => {
   try {
     dispatch({ type: types.PRODUCT_CREATE_REQUEST })
     const response = await api.post("/product", formData)
-<<<<<<< HEAD
     if (response.status !== 200) {
       throw new Error(response.error)
     }
@@ -64,15 +47,6 @@ const editProduct = (formData, id) => async (dispatch) => {
     dispatch(getProductList({ page: 1, name: "" }))
   } catch (error) {
     dispatch({ type: types.PRODUCT_EDIT_FAIL, payload: error.error })
-=======
-    if(response.status !== 200) {
-      throw new Error(response.error)
-    }
-    dispatch(commonUiAction.showToastMessage("상품생성 완료", "success"))
-    dispatch({type:types.PRODUCT_CREATE_SUCCESS})
-  } catch (error) {
-    dispatch({type:types.PRODUCT_CREATE_FAIL, payload:error.error})
->>>>>>> bb20e1efd59628653ca77e05471b601abfdf39d2
     dispatch(commonUiAction.showToastMessage(error.error, "error"))
   }
 };
@@ -80,8 +54,5 @@ const editProduct = (formData, id) => async (dispatch) => {
 export const productAction = {
   getProductList,
   createProduct,
-<<<<<<< HEAD
   editProduct,
-=======
->>>>>>> bb20e1efd59628653ca77e05471b601abfdf39d2
-};
+}
