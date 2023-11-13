@@ -8,7 +8,10 @@ import * as types from "../constants/product.constants";
 import { commonUiAction } from "../action/commonUiAction";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { image } from "@cloudinary/url-gen/qualifiers/source";
+<<<<<<< HEAD
 import { edit } from "@cloudinary/url-gen/actions/animated";
+=======
+>>>>>>> bb20e1efd59628653ca77e05471b601abfdf39d2
 
 const InitialFormData = {
   name: "",
@@ -23,7 +26,11 @@ const InitialFormData = {
 
 const NewItemDialog = ({ mode, showDialog, setShowDialog }) => {
 
+<<<<<<< HEAD
   const { selectedProduct } = useSelector((state) => state.product);
+=======
+  const selectedProduct = useSelector((state) => state.product.selectedProduct);
+>>>>>>> bb20e1efd59628653ca77e05471b601abfdf39d2
 
   const { error } = useSelector((state) => state.product);
   const [formData, setFormData] = useState(
@@ -38,7 +45,10 @@ const NewItemDialog = ({ mode, showDialog, setShowDialog }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+<<<<<<< HEAD
 
+=======
+>>>>>>> bb20e1efd59628653ca77e05471b601abfdf39d2
     if (stock.length === 0) return setStockError(true)
     const totalStock = stock.reduce((total, item) => {
       return { ...total, [item[0]]: parseInt([item[1]]) }
@@ -47,11 +57,15 @@ const NewItemDialog = ({ mode, showDialog, setShowDialog }) => {
       dispatch(productAction.createProduct({ ...formData, stock: totalStock }));
       setShowDialog(false)
     } else {
+<<<<<<< HEAD
       dispatch(productAction.editProduct(
         { ...formData, stock: totalStock },
         selectedProduct._id
       ));
       setShowDialog(false)
+=======
+      // 상품 수정하기
+>>>>>>> bb20e1efd59628653ca77e05471b601abfdf39d2
     }
   };
 
@@ -103,6 +117,7 @@ const NewItemDialog = ({ mode, showDialog, setShowDialog }) => {
   };
 
   useEffect(() => {
+<<<<<<< HEAD
     if (showDialog) {
       if (mode === "edit") {
         setFormData(selectedProduct)
@@ -116,6 +131,10 @@ const NewItemDialog = ({ mode, showDialog, setShowDialog }) => {
       }
     }
   }, [showDialog]);
+=======
+   
+  }, []);
+>>>>>>> bb20e1efd59628653ca77e05471b601abfdf39d2
 
   return (
     <Modal
