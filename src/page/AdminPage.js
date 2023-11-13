@@ -53,6 +53,9 @@ const AdminPage = () => {
   };
 
   const openEditForm = (product) => {
+    setMode("edit")
+    dispatch({ type: types.SET_SELECTED_PRODUCT, payload: product })
+    setShowDialog(true)
   };
 
   const handleClickNewItem = () => {

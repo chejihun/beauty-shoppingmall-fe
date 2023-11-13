@@ -7,4 +7,8 @@ export const PRODUCT_CREATE_FAIL = "PRODUCT_CREATE_FAIL";
 export const CATEGORY = ["Skin", "Trouble", "Body", ""];
 export const STATUS = ["active", "disactive"];
 export const SIZE = ["50ml", "100ml", "200ml"];
+export const SET_SELECTED_PRODUCT = "SET_SELECTED_PRODUCT";
+export const PRODUCT_EDIT_REQUEST = "PRODUCT_EDIT_REQUEST";
+export const PRODUCT_EDIT_SUCCESS = "PRODUCT_EDIT_SUCCESS";
+export const PRODUCT_EDIT_FAIL = "PRODUCT_EDIT_FAIL";
 

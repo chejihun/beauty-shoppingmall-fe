@@ -8,6 +8,7 @@ import * as types from "../constants/product.constants";
 import { commonUiAction } from "../action/commonUiAction";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { image } from "@cloudinary/url-gen/qualifiers/source";
+import { edit } from "@cloudinary/url-gen/actions/animated";
 
 const InitialFormData = {
   name: "",
@@ -22,7 +23,7 @@ const InitialFormData = {
 
 const NewItemDialog = ({ mode, showDialog, setShowDialog }) => {
 
-  const selectedProduct = useSelector((state) => state.product.selectedProduct);
+  const { selectedProduct } = useSelector((state) => state.product);
 
   const { error } = useSelector((state) => state.product);
   const [formData, setFormData] = useState(
@@ -37,6 +38,7 @@ const NewItemDialog = ({ mode, showDialog, setShowDialog }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
     if (stock.length === 0) return setStockError(true)
     const totalStock = stock.reduce((total, item) => {
       return { ...total, [item[0]]: parseInt([item[1]]) }
@@ -45,7 +47,11 @@ const NewItemDialog = ({ mode, showDialog, setShowDialog }) => {
       dispatch(productAction.createProduct({ ...formData, stock: totalStock }));
       setShowDialog(false)
     } else {
-      // 상품 수정하기
+      dispatch(productAction.editProduct(
+        { ...formData, stock: totalStock },
+        selectedProduct._id
+      ));
+      setShowDialog(false)
     }
   };
 
@@ -97,8 +103,19 @@ const NewItemDialog = ({ mode, showDialog, setShowDialog }) => {
   };
 
   useEffect(() => {
-   
-  }, []);
+    if (showDialog) {
+      if (mode === "edit") {
+        setFormData(selectedProduct)
+        //객체에서 어레이로 변경해야함(키값을 어레이로 수정)
+        const stockArray = Object.keys(selectedProduct.stock)
+          .map((size) => [size, selectedProduct.stock[size]])
+          setStock(stockArray)
+      } else {
+        setFormData({...InitialFormData})
+        setStock([]);
+      }
+    }
+  }, [showDialog]);
 
   return (
     <Modal
