@@ -9,8 +9,14 @@ const SearchBox = ({ searchQuery, setSearchQuery, placeholder, field }) => {
   const onCheckEnter = (event) => {
     if (event.key === "Enter") {
       setSearchQuery({ ...searchQuery, page: 1, [field]: event.target.value });
+      onClickSearchIcon();
     }
   };
+
+  const onClickSearchIcon = () => {
+    setSearchQuery({ ...searchQuery, page: 1, [field]: keyword });
+  };
+
   return (
     <div>
       <input
@@ -21,7 +27,10 @@ const SearchBox = ({ searchQuery, setSearchQuery, placeholder, field }) => {
         value={keyword}
         className="admin-search-box"
       />
-      <BiSearch className="admin-search-icon"/>
+      <BiSearch
+      className="admin-search-icon"
+      onClick={onClickSearchIcon}
+      />
     </div>
   );
 };

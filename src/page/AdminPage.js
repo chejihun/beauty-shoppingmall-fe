@@ -50,6 +50,7 @@ const AdminPage = () => {
   }, [searchQuery]);
 
   const deleteItem = (id) => {
+    dispatch(productAction.deleteProduct(id))
   };
 
   const openEditForm = (product) => {

@@ -73,7 +73,6 @@
   justify-content: space-between;
   margin: 40px 0px 30px 0;
  }
-
  .admin-search-box {
   height: 40px;
   border-radius: 5px;
@@ -85,4 +84,5 @@
   font-size: 32px;
   margin-left: 10px;
   padding-bottom: 5px;
- }
+  cursor: pointer;
+}
