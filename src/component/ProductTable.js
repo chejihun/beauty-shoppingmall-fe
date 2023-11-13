@@ -2,6 +2,8 @@ import React from "react";
 import Button from "react-bootstrap/Button";
 import Table from "react-bootstrap/Table";
 import { currencyFormat } from "../utils/number";
+import { RiDeleteBin6Line } from "react-icons/ri";
+import { FiEdit } from "react-icons/fi";
 
 const ProductTable = ({ header, data, deleteItem, openEditForm }) => {
   return (
@@ -38,18 +40,22 @@ const ProductTable = ({ header, data, deleteItem, openEditForm }) => {
                     size="sm"
                     variant="danger"
                     onClick={() => deleteItem(item._id)}
-                    className="mr-1"
+                    className="mr-btn"
                   >
-                    -
+                    <RiDeleteBin6Line className="delete-btn-icon" />
                   </Button>
-                  <Button size="sm" onClick={() => openEditForm(item)}>
-                    Edit
+                  <Button
+                    size="sm"
+                    onClick={() => openEditForm(item)}
+                    className="edit-btn"
+                  >
+                    <FiEdit className="edit-btn-icon"/>
                   </Button>
                 </th>
               </tr>
             ))
           ) : (
-            <tr>No Data to show</tr>
+            <tr>등록된 제품이 없습니다</tr>
           )}
         </tbody>
       </Table>

@@ -9,15 +9,21 @@ import { commonUiAction } from "../action/commonUiAction";
 import { productAction } from "../action/productAction";
 import ProductTable from "../component/ProductTable";
 import NewItemDialog from "../component/NewItemDialog";
+import SearchBox from "../component/SearchBox";
 
 const AdminPage = () => {
 
   const navigate = useNavigate();
+  const { productList } = useSelector(state => state.product)
   const dispatch = useDispatch();
   const [query, setQuery] = useSearchParams();
   const [showDialog, setShowDialog] = useState(false);
   const [mode, setMode] = useState("new");
-  
+  const [searchQuery, setSearchQuery] = useState({
+    page: query.get("page") || 1,
+    name: query.get("name") || "",
+  });
+
   const tableHeader = [
     "#",
     "Sku",
@@ -26,39 +32,57 @@ const AdminPage = () => {
     "Stock",
     "Image",
     "Status",
-    "",
+    "Delete / Edit",
   ];
 
   useEffect(() => {
-   
-  }, []);
+    dispatch(productAction.getProductList({ ...searchQuery }))
+  }, [query]);
+
+  useEffect(() => {
+    if (searchQuery.name === "") {
+      delete searchQuery.name
+    }
+    const params = new URLSearchParams(searchQuery)
+    const query = params.toString();
+    navigate("?" + query)
+
+  }, [searchQuery]);
 
   const deleteItem = (id) => {
-    //나중에 상품 삭제할키
   };
 
   const openEditForm = (product) => {
-    //나중에 상품 수정할키
   };
 
   const handleClickNewItem = () => {
     setMode("new")
     setShowDialog(true)
   };
-  
+
   return (
     <div className="setting-area">
       <Container>
-        <Button className="add-btn" onClick={handleClickNewItem}>
-          상품 추가하기
-        </Button>
+        <div className="admin-search-area">
+          <Button onClick={handleClickNewItem}>
+            상품 추가하기
+          </Button>
+
+          <SearchBox
+            searchQuery={searchQuery}
+            setSearchQuery={setSearchQuery}
+            placeholder="제품 이름으로 검색"
+            field="name"
+          />
+        </div>
 
         <ProductTable
           header={tableHeader}
-          data=""
+          data={productList}
           deleteItem={deleteItem}
           openEditForm={openEditForm}
         />
+
       </Container>
 
       <NewItemDialog
@@ -66,7 +90,7 @@ const AdminPage = () => {
         showDialog={showDialog}
         setShowDialog={setShowDialog}
       />
-      
+
     </div>
   )
 }

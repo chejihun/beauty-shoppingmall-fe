@@ -1,9 +1,6 @@
 .setting-area {
  /* background-color: aqua; */
 }
-.add-btn{
-  margin : 50px 0  20px 0;
-}
 .error-message{
   color: red;
   font-size: 10pt;
@@ -50,3 +47,42 @@
 .cloudinary {
   margin: 0 10px;
 }
+
+/* productTable */
+.overflow-x{
+  overflow-x:auto;
+  width: 100%;
+}
+.overflow-x::-webkit-scrollbar {
+  display: none;
+}
+.edit-btn-icon {
+  font-size: 24px;
+}
+.mr-btn {
+  margin-right: 10px;
+  
+}
+.edit-btn {
+  cursor: pointer;
+}
+
+ /* searchbox */
+ .admin-search-area {
+  display: flex;
+  justify-content: space-between;
+  margin: 40px 0px 30px 0;
+ }
+
+ .admin-search-box {
+  height: 40px;
+  border-radius: 5px;
+  background-color: transparent;
+  border: 1px solid #838383;
+  padding-left: 10px;
+ }
+ .admin-search-icon {
+  font-size: 32px;
+  margin-left: 10px;
+  padding-bottom: 5px;
+ }
