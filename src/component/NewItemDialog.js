@@ -33,6 +33,7 @@ const NewItemDialog = ({ mode, showDialog, setShowDialog }) => {
   const [stockError, setStockError] = useState(false);
 
   const handleClose = () => {
+    setShowDialog(false)
   };
 
   const handleSubmit = (event) => {

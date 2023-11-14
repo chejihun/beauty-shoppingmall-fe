@@ -4,6 +4,7 @@ const initialState = {
   error: "",
   productList: [],
   selectedProduct: null,
+  totalPageNum: 1
 };
 
 function productReducer(state = initialState, action) {
@@ -20,7 +21,13 @@ function productReducer(state = initialState, action) {
     case types.PRODUCT_DELETE_SUCCESS:
       return { ...state, loading: false, error: "" }
     case types.PRODUCT_GET_SUCCESS:
-      return { ...state, loading: false, error: "", productList: payload }
+      return {
+        ...state,
+        loading: false,
+        error: "",
+        productList: payload.data,
+        totalPageNum: payload.totalPageNum
+      }
 
     case types.PRODUCT_CREATE_FAIL:
     case types.PRODUCT_GET_FAIL:

@@ -14,7 +14,7 @@ import SearchBox from "../component/SearchBox";
 const AdminPage = () => {
 
   const navigate = useNavigate();
-  const { productList } = useSelector(state => state.product)
+  const { productList, totalPageNum } = useSelector(state => state.product)
   const dispatch = useDispatch();
   const [query, setQuery] = useSearchParams();
   const [showDialog, setShowDialog] = useState(false);
@@ -46,7 +46,6 @@ const AdminPage = () => {
     const params = new URLSearchParams(searchQuery)
     const query = params.toString();
     navigate("?" + query)
-
   }, [searchQuery]);
 
   const deleteItem = (id) => {
@@ -62,6 +61,11 @@ const AdminPage = () => {
   const handleClickNewItem = () => {
     setMode("new")
     setShowDialog(true)
+  };
+
+  const handlePageClick = ({ selected }) => {
+    setSearchQuery({ ...searchQuery, page: selected + 1 })
+    
   };
 
   return (
@@ -87,6 +91,29 @@ const AdminPage = () => {
           openEditForm={openEditForm}
         />
 
+        <ReactPaginate
+          nextLabel=">"
+          onPageChange={handlePageClick}
+          pageRangeDisplayed={5}
+          pageCount={totalPageNum}
+          forcePage={searchQuery.page - 1} // 1페이지면 2임 여긴 한개씩 +1 해야함
+          previousLabel="<"
+          renderOnZeroPageCount={null}
+          pageClassName="page-item"
+          pageLinkClassName="page-link"
+          previousClassName="page-item"
+          previousLinkClassName="page-link"
+          nextClassName="page-item"
+          nextLinkClassName="page-link"
+          breakLabel="..."
+          breakClassName="page-item"
+          breakLinkClassName="page-link"
+          containerClassName="pagination"
+          activeClassName="active"
+          className="paginate"
+        />
+    
+      
       </Container>
 
       <NewItemDialog

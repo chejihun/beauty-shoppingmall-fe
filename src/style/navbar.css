@@ -98,7 +98,7 @@
   margin-right: 15px;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1000px) {
   .navbar-area {
     position: fixed;
     justify-content: space-between;
