@@ -17,16 +17,14 @@
 .nav-menu1, .nav-menu2 {
   z-index: 99;
   position: fixed;
-  width: 250px;
+  width: 150px;
   height: 100%;
   padding: 30px;
 }
 .nav-menu1{
-  /* background-color: gold; */
   left: 0;
 }
 .nav-menu2 {
-  /* background-color: greenyellow; */
   right: 0;
   display: grid;
   grid-template-columns : repeat(1, auto);
@@ -102,7 +100,6 @@
   .navbar-area {
     position: fixed;
     justify-content: space-between;
-    background-color: skyblue;
     z-index: 99;
   }
   .nav-web-menu {
@@ -113,7 +110,6 @@
     position: fixed;
     justify-content: space-between;
     width: 100%;
-    /* background-color: #ececec; */
     padding: 6px 13px 0 16px;
     box-sizing: border-box;
     height: 55px;

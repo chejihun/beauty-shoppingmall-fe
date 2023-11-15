@@ -15,6 +15,7 @@ import { userAction } from "./action/userAction";
 import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect } from "react";
 import AdminPage from "./page/AdminPage";
+import ProductDetail from "./page/ProductDetail";
 
 
 const App = () => {
@@ -35,6 +36,7 @@ const App = () => {
         <Route path="/" element={<MainHomePage />} />
         <Route path={ROUTE_PATH.BRAND} element={<BrandPage />} />
         <Route path={ROUTE_PATH.STORE} element={<StorePage />} />
+        <Route path="/product/:id" element={<ProductDetail />} />
         <Route path={ROUTE_PATH.EVENT} element={<EventPage />} />
         <Route path={ROUTE_PATH.NOTICE} element={<NoticePage />} />
         <Route path="/login" element={<LoginPage />} />

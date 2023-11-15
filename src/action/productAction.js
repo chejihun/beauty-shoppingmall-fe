@@ -3,6 +3,21 @@ import * as types from "../constants/product.constants";
 import { toast } from "react-toastify";
 import { commonUiAction } from "./commonUiAction";
 
+const getProductDetail = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: types.GET_PRODUCT_DETAIL_REQUEST });
+    const response = await api.get(`/product/${id}`);
+    if (response.status !== 200) throw new Error(response.error);
+    dispatch({
+      type: types.GET_PRODUCT_DETAIL_SUCCESS,
+      payload: response.data.data,
+    });
+  } catch (error) {
+    dispatch({ type: types.GET_PRODUCT_DETAIL_FAIL, payload: error.error });
+    dispatch(commonUiAction.showToastMessage(error.error, "error"));
+  }
+};
+
 const getProductList = (query) => async (dispatch) => {
   try {
     dispatch({ type: types.PRODUCT_GET_REQUEST })
@@ -12,7 +27,9 @@ const getProductList = (query) => async (dispatch) => {
     if (response.status !== 200) {
       throw new Error(response.error)
     }
+    
     dispatch({ type: types.PRODUCT_GET_SUCCESS, payload: response.data })
+    
   } catch (error) {
     dispatch({ type: types.PRODUCT_GET_FAIL, payload: error.error })
     dispatch(commonUiAction.showToastMessage(error.error, "error"))
@@ -67,9 +84,11 @@ const deleteProduct = (id) => async (dispatch) => {
   }
 }
 
+
 export const productAction = {
   getProductList,
   createProduct,
   editProduct,
-  deleteProduct
+  deleteProduct,
+  getProductDetail
 }
