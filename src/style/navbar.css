@@ -95,6 +95,17 @@
   cursor: pointer;
   margin-right: 15px;
 }
+.shop-count {
+  position: absolute;
+  font-size: 14px;
+  font-weight: 500;
+  color: #fff;
+  top:25px;
+  left: 18px;
+  border-radius: 20px;
+  padding: 0px 7px 01px 7px;
+  background-color: red;
+}
 
 @media screen and (max-width: 1000px) {
   .navbar-area {
@@ -106,13 +117,15 @@
     display: none;
   }
   .nav-app-menu {
+    background-color: #ffffff;
     display: block;
     position: fixed;
+    top: 0;
     justify-content: space-between;
     width: 100%;
     padding: 6px 13px 0 16px;
     box-sizing: border-box;
-    height: 55px;
+    height: 60px;
   }
   .app-menu{
     display: grid;

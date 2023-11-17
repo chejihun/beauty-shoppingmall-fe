@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../style/navbar.css";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import { FaRegUser, FaFacebookF, FaInstagram } from "react-icons/fa";
@@ -9,6 +9,7 @@ import { FiSettings } from "react-icons/fi";
 import { ROUTE_PATH } from "../constants/route.path";
 import { useDispatch, useSelector } from "react-redux";
 import { userAction } from "../action/userAction";
+import { cartAction } from "../action/cartAction";
 
 const Navbar = () => {
 
@@ -17,6 +18,7 @@ const Navbar = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const isMobile = window.navigator.userAgent.indexOf("Mobile") !== -1;
+  const { cartItemCount } = useSelector((state) => state.cart);
 
   const menuList = [
     { label: "브랜드", path: ROUTE_PATH.BRAND },
@@ -38,6 +40,12 @@ const Navbar = () => {
   const logout = () => {
     dispatch(userAction.logout());
   };
+
+  useEffect(() => {
+    if (user) {
+      dispatch(cartAction.getCartQty());
+    }
+  }, [user]);
 
   return (
     <div className={`navbar-area ${homePage ? 'home-page' : ''}`}>
@@ -94,12 +102,18 @@ const Navbar = () => {
               </div>
             )}
           </div>
+          
           <div
-            className={`nav-i-list ${homePage ? "white-text" : "black-text"}`}
+          className={`nav-i-list ${homePage ? "white-text" : "black-text"}`}
+            onClick={() => navigate("/cart")}
           >
             <BiShoppingBag />
+            {!isMobile && (
+            <span className="shop-count"> {`(${cartItemCount || 0})`} </span>
+            )}
             <span className="i-message i-message-logout">장바구니</span>
           </div>
+
           <div
             className={`nav-i-list ${homePage ? "white-text" : "black-text"}`}
           >

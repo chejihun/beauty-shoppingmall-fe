@@ -6,6 +6,7 @@ import { productAction } from "../action/productAction";
 import { commonUiAction } from "../action/commonUiAction";
 import { currencyFormat } from "../utils/number";
 import "../style/productDetail.css"
+import { cartAction } from "../action/cartAction";
 
 const ProductDetail = () => {
   const dispatch = useDispatch();
@@ -17,6 +18,14 @@ const ProductDetail = () => {
   const navigate = useNavigate();
 
   const addItemToCart = () => {
+    if (size === "") {
+      setSizeError(true)
+      return
+    }
+    if (!user) {
+      navigate("/login")
+    }
+    dispatch(cartAction.addToCart({ id, size }));
   };
 
   const selectSize = (value) => {
@@ -32,6 +41,9 @@ const ProductDetail = () => {
 
   return (
     <Container className="product-detail-card">
+      <div className="product-detail-category">
+        Product  &nbsp; &gt; &nbsp; {selectedProduct.category
+      }</div>
       <Row>
         <Col sm={6}>
           {selectedProduct && selectedProduct.image && (
@@ -83,9 +95,6 @@ const ProductDetail = () => {
                 <Dropdown.Item disabled={true}>용량이 없습니다</Dropdown.Item>
               )}
             </Dropdown.Menu>
-
-
-
           </Dropdown>
           <div className="warning-message">
             {sizeError && "용량을 선택해주세요."}

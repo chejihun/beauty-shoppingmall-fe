@@ -1,5 +1,6 @@
 .product-detail-card {
-  padding-top: 100px;
+  margin-top: 50px;
+  padding-top: 35px;
 }
 .pd-img {
   width: 90%;
@@ -40,4 +41,13 @@
 }
 .warning-message{
   color:red;
+}
+.product-detail-category {
+ text-align: right;
+ width: 100%;
+ margin-bottom: 70px;
+ text-transform: capitalize;
+ padding-bottom: 10px;
+ border-bottom: 1px solid #a8a8a8;
+ font-size: 12px;
 }

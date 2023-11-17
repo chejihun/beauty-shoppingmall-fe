@@ -1,0 +1,161 @@
+/* cart product card */
+
+.product-card-cart{
+  margin-bottom: 10px;
+  background-color: rgb(240, 240, 240);
+  padding:10px;
+}
+.cart-display-flex {
+  display: flex;
+  position: relative;
+}
+.card-mg {
+  padding-left: 10px;
+}
+.card-bt > h3 {
+  font-size: 22px;
+} 
+.qty-dropdown{
+  margin-top: 5px;
+  max-width:400px;
+}
+.trash-button{
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  background-color: #fff;
+  border: 1px solid gray;
+  width: 35px;
+  height: 35px;
+}
+.trash-button:hover{
+  background-color: #4e4e4e;
+  color : #fff
+}
+.cart-product-card-delete {
+  font-size: 20px;
+}
+.card-pr {
+  margin: 20px 0 5px 0 ;
+}
+.card-ml {
+  margin-bottom: 5px;
+}
+.card-tpr {
+  margin : 15px 0 10px 0;
+  font-weight: 500;
+  font-size: 20px;
+}
+.img-cart {
+ width: 25%;
+ margin: auto 0;
+}
+.img-cart > img {
+  margin: auto;
+  display: block;
+}
+.qty-input {
+  margin-left: 5px;
+  width: 30%;
+}
+
+/* //order receipt */
+.receipt-container{
+  border: 1px solid gray;
+  padding: 32px 24px;
+}
+.receipt-list{
+  list-style-type: none;
+  padding: 0;
+  border-bottom: 1px solid black;
+}
+.receipt-list li{
+  padding-bottom: 10px;
+}
+.payment-button{
+ width: 100%;
+ padding: 16px;
+ margin: 20px 0;
+}
+
+
+/* cartpage */
+.cart-area {
+  width: 80%;
+  margin-top: 100px;
+}
+.empty-bag{
+  padding: 20px;
+  text-align: center;
+}
+
+
+/* orderreceipt */
+.display-flex {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+@media all and (min-width:1100px) and (max-width:1300px) {
+  .img-cart {
+    width: 30%;
+   }
+}
+
+@media all and (min-width:614px) and (max-width:1099px) {
+  .img-cart {
+    width: 35%;
+   }
+}
+@media all  and (max-width:613px) {
+  .cart-display-flex {
+    display: grid;
+  }
+  .card-mg {
+    width: 100%;
+    padding: 10px 0 10px 20px;
+  }
+  .card-bt > h3 {
+    font-size: 18px;
+  }
+  .trash-button{
+    bottom: 5px;
+    right: 5px;
+    width: 50px;
+    height: 50px;
+  }
+  .trash-button:hover{
+    background-color: #4e4e4e;
+    color : #fff
+  }
+  .cart-product-card-delete {
+    font-size: 30px;
+  }
+  .card-qty, .card-pr, .card-ml {
+    font-size: 14px;
+  }
+  .card-pr {
+    margin: 10px 0 5px 0 ;
+  }
+  .card-ml {
+    margin-bottom: 5px;
+  }
+  .card-tpr {
+    margin : 15px 0 10px 0;
+    font-weight: 500;
+    font-size: 16px;
+  }
+  .img-cart {
+   width: 100%;
+   margin: 0 auto;
+  }
+  .img-cart > img {
+    margin: 0 auto;
+    display: block;
+  }
+  .qty-input {
+    margin-left: 5px;
+    width: 30%;
+  }
+}

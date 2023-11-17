@@ -40,7 +40,7 @@ const StorePage = () => {
   }, [query])
 
   return (
-    <div>
+    <div className="st-flex">
       <Container className="store-sort-area">
         <div className="store-total">Product ({productList.length})</div>
         <div className="store-sort">
