@@ -42,7 +42,7 @@ const ProductDetail = () => {
   return (
     <Container className="product-detail-card">
       <div className="product-detail-category">
-        Product  &nbsp; &gt; &nbsp; {selectedProduct.category
+        Product  &nbsp; &gt; &nbsp; {selectedProduct && selectedProduct.category
       }</div>
       <Row>
         <Col sm={6}>

@@ -67,7 +67,7 @@
 }
 .store-area {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
 }
 .store-card {
   display: grid;

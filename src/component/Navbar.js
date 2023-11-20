@@ -10,15 +10,18 @@ import { ROUTE_PATH } from "../constants/route.path";
 import { useDispatch, useSelector } from "react-redux";
 import { userAction } from "../action/userAction";
 import { cartAction } from "../action/cartAction";
+import ModalSearch from "./ModalSearch";
+import { productAction } from "../action/productAction";
 
 const Navbar = () => {
 
   const { user } = useSelector((state) => (state.user))
+
   const dispatch = useDispatch();
   const location = useLocation();
   const navigate = useNavigate();
-  const isMobile = window.navigator.userAgent.indexOf("Mobile") !== -1;
   const { cartItemCount } = useSelector((state) => state.cart);
+  const [showModalSearch, setShowModalSearch] = useState(false);
 
   const menuList = [
     { label: "브랜드", path: ROUTE_PATH.BRAND },
@@ -39,6 +42,10 @@ const Navbar = () => {
 
   const logout = () => {
     dispatch(userAction.logout());
+  };
+
+  const handleClickModalSearch = () => {
+    setShowModalSearch(true)
   };
 
   useEffect(() => {
@@ -91,31 +98,30 @@ const Navbar = () => {
           <div>
             {user ? (
               <div onClick={logout} className={`nav-i-list ${homePage ? "white-text" : "black-text"}`}>
-                {!isMobile && <BiLogOut className="nav-i-login" />}
+                <BiLogOut className="nav-i-login" />
                 <span className="i-message i-message-logout">로그아웃</span>
               </div>
             ) : (
               <div onClick={() => navigate("/login")} className={`nav-i-list ${homePage ? "white-text" : "black-text"}`}>
 
-                {!isMobile && <FaRegUser className="nav-i-login" />}
+                <FaRegUser className="nav-i-login" />
                 <span className="i-message i-message-login">로그인 / 회원가입</span>
               </div>
             )}
           </div>
-          
+
           <div
-          className={`nav-i-list ${homePage ? "white-text" : "black-text"}`}
+            className={`nav-i-list ${homePage ? "white-text" : "black-text"}`}
             onClick={() => navigate("/cart")}
           >
             <BiShoppingBag />
-            {!isMobile && (
-            <span className="shop-count"> {`(${cartItemCount || 0})`} </span>
-            )}
+            <span className="shop-count"> {`${cartItemCount || 0}`} </span>
             <span className="i-message i-message-logout">장바구니</span>
           </div>
 
           <div
             className={`nav-i-list ${homePage ? "white-text" : "black-text"}`}
+            onClick={handleClickModalSearch}
           >
             <BiSearch />
             <span className="i-message i-message-search">검색</span>
@@ -142,6 +148,12 @@ const Navbar = () => {
           </div>
         </div>
       </div>
+
+      <ModalSearch
+        showModalSearch={showModalSearch}
+        setShowModalSearch={setShowModalSearch}
+        // setSearchKeyword={setSearchKeyword}
+      />
     </div>
   )
 }

@@ -107,7 +107,7 @@
   background-color: red;
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 900px) {
   .navbar-area {
     position: fixed;
     justify-content: space-between;
