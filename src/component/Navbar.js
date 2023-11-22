@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { userAction } from "../action/userAction";
 import { cartAction } from "../action/cartAction";
 import ModalSearch from "./ModalSearch";
-import { productAction } from "../action/productAction";
+import AppNavMenu from "./AppNavMenu"
 
 const Navbar = () => {
 
@@ -22,6 +22,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const { cartItemCount } = useSelector((state) => state.cart);
   const [showModalSearch, setShowModalSearch] = useState(false);
+  const [showAppMenu, setShowAppMenu] = useState(false);
 
   const menuList = [
     { label: "브랜드", path: ROUTE_PATH.BRAND },
@@ -47,6 +48,10 @@ const Navbar = () => {
   const handleClickModalSearch = () => {
     setShowModalSearch(true)
   };
+
+  const handleClickAppMenu = () => {
+    setShowAppMenu(true)
+  }
 
   useEffect(() => {
     if (user) {
@@ -109,7 +114,6 @@ const Navbar = () => {
               </div>
             )}
           </div>
-
           <div
             className={`nav-i-list ${homePage ? "white-text" : "black-text"}`}
             onClick={() => navigate("/cart")}
@@ -118,7 +122,6 @@ const Navbar = () => {
             <span className="shop-count"> {`${cartItemCount || 0}`} </span>
             <span className="i-message i-message-logout">장바구니</span>
           </div>
-
           <div
             className={`nav-i-list ${homePage ? "white-text" : "black-text"}`}
             onClick={handleClickModalSearch}
@@ -142,9 +145,16 @@ const Navbar = () => {
       {/* 반응형 앱 메뉴 */}
       <div className="nav-app-menu">
         <div className="app-menu">
-          <h2 className="app-logo">N<span>&</span>B</h2>
-          <div>
-            <HiMenu className="nav-i-menu" />
+          <h2 className="app-logo"
+            onClick={() => handleLogoClick()}
+          >N<span>&</span>B</h2>
+          <div className="app-r-menu">
+            <div onClick={handleClickModalSearch}>
+              <BiSearch className="app-search"/>
+            </div>
+            <div onClick={handleClickAppMenu}>
+              <HiMenu className="nav-i-menu" />
+            </div>
           </div>
         </div>
       </div>
@@ -152,8 +162,18 @@ const Navbar = () => {
       <ModalSearch
         showModalSearch={showModalSearch}
         setShowModalSearch={setShowModalSearch}
-        // setSearchKeyword={setSearchKeyword}
       />
+
+      <AppNavMenu
+        showAppMenu={showAppMenu}
+        setShowAppMenu={setShowAppMenu}
+        setShowModalSearch={setShowModalSearch}
+        logout={logout}
+        cartItemCount={cartItemCount}
+        user={user}
+        menuList={menuList}
+      />
+
     </div>
   )
 }

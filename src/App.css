@@ -15,12 +15,6 @@ h1, h2, h3, h4, h5, h6, p, div {
   height: 100vh;
   padding-top: 100px;
 }
-.box1 {
-  background-image: url('./image/silde_background_01.jpg');
-  background-size: cover;
-  background-position : center;
-  background-repeat:repeat;
-}
 .box2 {
   background-color: seagreen;
 }

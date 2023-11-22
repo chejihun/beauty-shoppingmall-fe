@@ -12,7 +12,7 @@ const ModalSearch = ({ showModalSearch, setShowModalSearch  }) => {
   const navigate = useNavigate();
   const [keyword, setKeyword] = useState("");
 
-  const handleSeacrhCloseClick = () => {
+  const handleSearchCloseClick = () => {
     setShowModalSearch(false)
   }
   
@@ -39,7 +39,7 @@ const ModalSearch = ({ showModalSearch, setShowModalSearch  }) => {
     >
       <IoClose
         className='modal-close'
-        onClick={handleSeacrhCloseClick}
+        onClick={handleSearchCloseClick}
       />
         <Row>
           <Col className='modal-search-area'>

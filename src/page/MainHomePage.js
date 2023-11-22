@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useState }  from "react";
 import SlideBanner from "../component/SlideBanner";
 import HomeBrandPage from "../component/HomeBrandPage";
 

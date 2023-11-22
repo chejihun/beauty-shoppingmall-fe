@@ -1,0 +1,118 @@
+.app-nav-menu {
+  position: relative;
+  position: fixed;
+  width: 80%;
+  height: 100vh;
+  padding: 10px;
+  top: 0;
+  right: 0;
+  background-color: #fff;
+  border-left: 1px solid #afafaf;
+  /* backdrop-filter: blur(50px), grayscale(70%); 왜 이것만 적용안되냐 */
+}
+.nav-app-close {
+  position: absolute;
+  border: none;
+  background-color: transparent;
+  top: 0px;
+  left: 0px;
+}
+.nav-app-close-icon {
+  font-size: 40px;
+  color: #363636;
+}
+.nav-app-close-icon:active {
+  background-color: transparent;
+}
+.app-menu-user, .app-menu-cart {
+  margin-top: 70px;
+  display: flex;
+  justify-content: center;
+}
+.app-menu-login, .app-menu-register {
+  color: #fff;
+  text-align: center;
+  font-size:18px;
+  padding: 10px 0;
+  width: 190px;
+  background-color: #363636;
+  border: 1px solid #363636;
+}
+.app-menu-register {
+  color: #363636;
+  background-color: transparent;
+  border: 1px solid #363636;
+  box-sizing: border-box;
+  margin-left: 14px;
+}
+.app-menu-cart {
+  margin-top:20px ;
+  color: #fff;
+  font-size:18px;
+}
+.app-cart {
+  color: #fff;
+  text-align: center;
+  font-size:18px;
+  padding: 11px 0;
+  width: 394px;
+  background-color: #363636;
+}
+.app-line {
+  margin: 40px auto ;
+  display: flex;
+  max-width: 394px;
+  width: 100%;
+  height: 1px;
+  border-bottom: 1px solid #b6b6b6;;
+}
+.app-menulist-area {
+  display: flex;
+  justify-content: center;
+}
+.app-menulist-grid {
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 394px;
+}
+.app-menulist {
+  position: relative;
+  margin-bottom: 10px;
+  font-size: 20px;
+  width: 100%;
+  padding: 4px 0;
+}
+.w-line {
+  position: absolute;
+  right: 10px;
+}
+.app-i-bottom-menu {
+  display: flex;
+  position: absolute;
+  left: 20px;
+  bottom: 20px;
+  font-size: 25px;
+  color: #000;
+}
+
+
+@media all and (min-width:768px) and (max-width:900px) {
+  .app-nav-menu {
+    width: 60%;
+  }
+}
+@media all and (min-width:551px) and (max-width:767px) {
+  .app-nav-menu {
+    width: 80%;
+  }
+}
+@media all  and (max-width:550px) {
+  .app-nav-menu {
+    padding: 20px;
+  }
+  .app-nav-menu {
+    width: 90%;
+  }
+}

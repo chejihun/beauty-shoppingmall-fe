@@ -107,6 +107,7 @@
   background-color: red;
 }
 
+
 @media screen and (max-width: 900px) {
   .navbar-area {
     position: fixed;
@@ -141,14 +142,25 @@
     font-family: 'Forum', serif;
     letter-spacing: 2px;
     padding-top: 2px;
+    margin-left: 10px;
   }
   .app-logo span {
     font-size: 29px;
   }
+  .app-r-menu {
+    /* background-color: aqua; */
+    width: 150px;
+    display: flex;
+    justify-content: flex-end;
+  }
   .nav-i-menu {
     width: 50px;
-    padding-top: 5px;
     height: 45px;
     cursor: pointer;
+    margin: auto 15px;
+  }
+  .app-search {
+    padding-top: 5px;
+    font-size: 45px;
   }
 }
