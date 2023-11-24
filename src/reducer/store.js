@@ -3,6 +3,7 @@ import userReducer from "./userReducer";
 import commonUiReducer from "./commonUiReducer";
 import productReducer from "./productReducer";
 import cartReducer from "./cartReducer";
+import postReducer from "./postReducer";
 
 const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ const store = configureStore({
     ui: commonUiReducer,
     product: productReducer,
     cart: cartReducer,
+    post: postReducer,
   },
 });
 

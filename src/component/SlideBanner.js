@@ -11,7 +11,7 @@ import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
 
 const Slide = ({ id, image, title, content, view }) => {
   return (
-    <div key={id} className="ttt">
+    <div key={id} className="st-area">
       <img src={image} alt={`Slide ${id}`} className="slide-bg-img" />
       <h2 className="slide-bg-title">{title}</h2>
       <p className="slide-bg-content">{content}</p>

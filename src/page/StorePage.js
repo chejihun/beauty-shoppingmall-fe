@@ -45,7 +45,7 @@ const StorePage = () => {
         <div className="store-total">Product ({productList.length})</div>
         <div className="store-sort">
           {storeSort.map((item) => (
-            <div key={item} onClick={() => handleSortClick(item)} className="">
+            <div key={item} onClick={() => handleSortClick(item)} className="sort-item">
               {item}
             </div>
           ))}
