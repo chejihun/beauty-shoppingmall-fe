@@ -18,6 +18,8 @@ import AdminPage from "./page/AdminPage";
 import ProductDetail from "./page/ProductDetail";
 import CartPage from "./page/Cartpage";
 import Posting from "./page/Posting";
+import Post from "./page/Post";
+
 const App = () => {
 
   const dispatch = useDispatch();
@@ -40,6 +42,7 @@ const App = () => {
         <Route path={ROUTE_PATH.EVENT} element={<EventPage />} />
         <Route path={ROUTE_PATH.NOTICE} element={<NoticePage />} />
         <Route path="/posting" element={<Posting/>} />
+        <Route path="/post/:id" element={<Post/>} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/admin" element={<AdminPage />} />
@@ -47,7 +50,6 @@ const App = () => {
         
 
       </Routes>
-
     </div >
   );
 }

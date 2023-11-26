@@ -1,7 +1,13 @@
 import React from 'react'
 import Table from "react-bootstrap/Table";
+import { useNavigate } from "react-router-dom";
 
 const PostTable = ({ noticeHeader, postList }) => {
+
+  const navigate = useNavigate();
+  const showProduct = (id) => {
+    navigate(`/post/${id}`);
+  };
 
   return (
     <div>
@@ -16,7 +22,7 @@ const PostTable = ({ noticeHeader, postList }) => {
 
         <tbody className='tbody'>
           {postList.map((post, index) => (
-            <tr key={index}>
+            <tr key={index} className='postcard' onClick={() => showProduct(post._id)}>
               <th>{index}</th>
               <th>{post.title}</th>
               <th>{new Date(post.createdAt).toLocaleDateString()}</th>

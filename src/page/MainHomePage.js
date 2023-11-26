@@ -11,6 +11,8 @@ const MainHomePage = () => {
       <HomeBrandPage />
       <div  className="box3">
         화면3
+        <input type="file"/>
+        <button onClick={() => {}}>업로드</button>
       </div>
     </div>
   )

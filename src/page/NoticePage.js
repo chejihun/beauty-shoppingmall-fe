@@ -6,6 +6,7 @@ import PostTable from '../component/PostTable';
 import { useDispatch, useSelector } from "react-redux";
 import { postAction } from '../action/postAction';
 
+
 const NoticePage = () => {
 
   const navigate = useNavigate();
@@ -48,7 +49,6 @@ const NoticePage = () => {
         noticeHeader={noticeHeader}
         postList={postList}
       />
-
     </div>
   );
 
