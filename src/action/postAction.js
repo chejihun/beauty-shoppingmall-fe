@@ -28,7 +28,7 @@ const getPostList = (query) => async (dispatch) => {
   try {
     dispatch({ type: types.POST_GET_REQUEST })
     const response = await api.get("/post", {
-      params: { ...query }
+      params: query 
     })
     if (response.status !== 200) {
       throw new Error(response.error)

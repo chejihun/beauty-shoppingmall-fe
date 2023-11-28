@@ -65,7 +65,6 @@ const AdminPage = () => {
 
   const handlePageClick = ({ selected }) => {
     setSearchQuery({ ...searchQuery, page: selected + 1 })
-    
   };
 
   return (

@@ -6,11 +6,14 @@ import "../style/posting.css"
 import "react-quill/dist/quill.snow.css"
 import ReactQuill from "react-quill"
 
+
 const Posting = () => {
+
+
   const categories = ['공지사항', '상품후기', '이벤트'];
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  
+
   const [category, setCategory] = useState('');
   const [name, setName] = useState('');  // 추가: 사용자 이름
 
@@ -23,6 +26,7 @@ const Posting = () => {
 
   const handleContentChange = (value) => {
     setDescription(value);
+    console.log(value)
   };
 
   const handleCategoryChange = (event) => {
@@ -40,6 +44,9 @@ const Posting = () => {
   };
 
   const modules = {
+    clipboard: {
+      matchVisual: false,
+    },
     toolbar: [
       [{ header: [1, 2, false] }],
       ["bold", "italic", "underline", "strike", "blockquote"],
@@ -109,16 +116,16 @@ const Posting = () => {
           style={{ width: '100%', marginBottom: '10px' }}
         />
 
-
-        <ReactQuill
-          id='content'
-          defaultValue={description}
-          onChange={handleContentChange}
-          modules={modules}
-          formats={formats}
-        />
-
-        {/* <label htmlFor='content'>본문:</label> */}
+        <div className='quill-hi'>
+          <ReactQuill
+            id='content'
+            theme="snow"
+            defaultValue={description}
+            onChange={handleContentChange}
+            modules={modules}
+            formats={formats}
+          />
+        </div>
 
         <button
           type='submit'

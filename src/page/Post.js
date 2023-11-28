@@ -4,13 +4,17 @@ import { commonUiAction } from "../action/commonUiAction";
 import { useDispatch, useSelector } from "react-redux";
 import { postAction } from "../action/postAction";
 import { useNavigate, useSearchParams } from 'react-router-dom'
-  ;
+import QuillRender from "../component/QuillRender"
+import DOMPurify from 'dompurify';
+
 const Post = () => {
+
 
   const { id } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { selectedPost } = useSelector((state) => state.post);
+  const selectedPost = useSelector((state) => state.post.selectedPost);
+  const sanitizedHTML = DOMPurify.sanitize(selectedPost);
   const handleNoticeClick = () => {
     navigate("/notice")
   }
@@ -20,6 +24,11 @@ const Post = () => {
   const handlePostDelete = () => {
 
   }
+
+  const stripHtmlTags = (htmlString) => {
+    const regex = /<br\s*\/?>/gi;
+    return htmlString.replace(regex, '\n').replace(/<[^>]*>/g, '');
+  };
 
   useEffect(() => {
     dispatch(postAction.getPostDetail(id))
@@ -43,8 +52,11 @@ const Post = () => {
           <div>{selectedPost && selectedPost.title}</div>
         </div>
 
-        <div className="post-content">
-          {selectedPost && selectedPost.description}
+        <div className="post-content" >
+        {/* dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(quillText) }} */}
+        {/* {selectedPost && stripHtmlTags(selectedPost.description)} */}
+          {/* <QuillRender quillText={selectedPost && stripHtmlTags(selectedPost.description)} /> */}
+          <QuillRender quillText={selectedPost && selectedPost.description} />
         </div>
 
         <div className="post-btn">

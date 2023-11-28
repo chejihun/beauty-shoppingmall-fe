@@ -54,10 +54,12 @@
   grid-template-columns: 8% 70% 12% 10%;
   height: 60px;
 }
-
 .tbody tr th  {
   font-size: 14px;
   font-weight: 400;
   color:#6e6e6e;
   padding-top: 19px;
+}
+.n-paginate {
+  margin-top: 30px ;
 }

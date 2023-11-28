@@ -22,10 +22,11 @@ function postReducer(state = initialState, action) {
         ...state,
         loading: false,
         error: "",
-        postList: payload.data
+        postList: payload.data,
+        totalPageNum: payload.totalPageNum
       }
     case types.GET_POST_SUCCESS: {
-      return { ...state, loading: false, selectedPost: payload };
+      return {...state, loading: false, selectedPost: payload };
     }
 
     case types.POST_CREATE_FAIL:
