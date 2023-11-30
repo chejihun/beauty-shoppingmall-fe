@@ -1,21 +1,24 @@
-import React, { useState } from 'react';
-import { useDispatch } from "react-redux";
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from "react-redux";
 import { postAction } from "../action/postAction";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import "../style/posting.css"
 import "react-quill/dist/quill.snow.css"
 import ReactQuill from "react-quill"
 
-
 const Posting = () => {
 
+  // const post = useSelector((state) => state.post);
 
+
+  const { state } = useLocation();
   const categories = ['공지사항', '상품후기', '이벤트'];
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-
   const [category, setCategory] = useState('');
-  const [name, setName] = useState('');  // 추가: 사용자 이름
+
+  const mode = useSelector((state) => state.post.mode);
+  const postId = useSelector((state) => state.post.selectedPost._id);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -26,22 +29,35 @@ const Posting = () => {
 
   const handleContentChange = (value) => {
     setDescription(value);
-    console.log(value)
   };
 
   const handleCategoryChange = (event) => {
     setCategory(event.target.value);
   };
 
-  const handleNameChange = (event) => {
-    setName(event.target.value);
-  };
+
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(postAction.createPost({ title, description, category, name }));
-    navigate('/notice');
+    if (mode === 'edit' && postId) {
+      // 수정 모드
+      dispatch(postAction.editPost({ title, description, category }, postId));
+      navigate(`/post/${postId}`);
+    } else {
+      // 새로운 모드
+      dispatch(postAction.createPost({ title, description, category }));
+      navigate('/notice')
+    }
   };
+
+  useEffect(() => {
+    if (state && state.postData) {
+      const { title, description, category } = state.postData;
+      setCategory(category)
+      setTitle(title);
+      setDescription(description);
+    }
+  }, [state]);
 
   const modules = {
     clipboard: {
@@ -98,15 +114,6 @@ const Posting = () => {
           ))}
         </select>
 
-        <label htmlFor='name'>이름:</label>
-        <input
-          type='text'
-          id='name'
-          value={name}
-          onChange={handleNameChange}
-          style={{ width: '100%', marginBottom: '10px' }}
-        />
-
         <label htmlFor='title'>제목:</label>
         <input
           type='text'
@@ -120,7 +127,7 @@ const Posting = () => {
           <ReactQuill
             id='content'
             theme="snow"
-            defaultValue={description}
+            value={description}
             onChange={handleContentChange}
             modules={modules}
             formats={formats}
@@ -130,8 +137,9 @@ const Posting = () => {
         <button
           type='submit'
           disabled={!category}
-          className="write" >
-          작성하기
+          className="write"
+        >
+          {mode  === 'new' ? '작성하기' : '수정하기'}
         </button>
       </form>
     </div>

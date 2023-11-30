@@ -29,7 +29,7 @@ const PostTable = ({ noticeHeader, postList, currentPage, pageSize, totalPageNum
                  <th>{(totalPageNum - currentPage) * pageSize + (postList.length - index)}</th>
                 <th>{post.title}</th>
                 <th>{new Date(post.createdAt).toLocaleDateString()}</th>
-                <th>{post.name}</th>
+                <th>{post.userName}</th>
               </tr>
             ))
           )}

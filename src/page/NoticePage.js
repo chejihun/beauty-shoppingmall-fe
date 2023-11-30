@@ -33,6 +33,7 @@ const NoticePage = () => {
   ];
 
   const handleWriteClick = () => {
+    dispatch(postAction.setMode('new'));
     navigate("/posting")
   }
 
