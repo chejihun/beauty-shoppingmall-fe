@@ -8,17 +8,17 @@ import ReactQuill from "react-quill"
 
 const Posting = () => {
 
-  // const post = useSelector((state) => state.post);
-
-
+  const location = useLocation();
+  const { selectedCategory } = location.state || { selectedCategory: '' };
+  const [category, setCategory] = useState(selectedCategory);
   const { state } = useLocation();
   const categories = ['공지사항', '상품후기', '이벤트'];
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const [category, setCategory] = useState('');
+  // const [category, setCategory] = useState('');
 
   const mode = useSelector((state) => state.post.mode);
-  const postId = useSelector((state) => state.post.selectedPost._id);
+  const postId = useSelector((state) => state.post.selectedPost ? state.post.selectedPost._id : null);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -34,8 +34,6 @@ const Posting = () => {
   const handleCategoryChange = (event) => {
     setCategory(event.target.value);
   };
-
-
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -104,6 +102,7 @@ const Posting = () => {
           id='category'
           value={category}
           onChange={handleCategoryChange}
+          disabled={selectedCategory !== ''}
           style={{ width: '100%', marginBottom: '10px' }}
         >
           <option value=''>카테고리 선택</option>

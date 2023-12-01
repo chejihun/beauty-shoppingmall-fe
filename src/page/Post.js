@@ -1,4 +1,4 @@
-import { useParams  } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { commonUiAction } from "../action/commonUiAction";
 import { useDispatch, useSelector } from "react-redux";
@@ -12,7 +12,7 @@ const Post = () => {
 
   // const state = useSelector((state) => state);
   // console.log("state",state);
-  
+
   const { id } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -24,19 +24,14 @@ const Post = () => {
   }
 
   const handlePostEdit = () => {
-    try {
-      dispatch(postAction.setMode('edit'));
-      dispatch(postAction.getPostDetail(id));
-      navigate('/posting', { state: { postData: selectedPost } });
-    } catch (error) {
-      console.error('Error fetching post data:', error);
-    }
+    dispatch(postAction.setMode('edit'));
+    dispatch(postAction.getPostDetail(id));
+    navigate('/posting', { state: { postData: selectedPost } });
   }
-  // console.log("selectedPost", selectedPost)
- 
   const handlePostDelete = () => {
-
-  }
+    dispatch(postAction.deletePost(id));
+    navigate("/notice");
+  };
 
   const stripHtmlTags = (htmlString) => {
     const regex = /<br\s*\/?>/gi;

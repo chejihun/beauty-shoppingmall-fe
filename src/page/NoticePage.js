@@ -12,7 +12,7 @@ const NoticePage = () => {
   const pageSize = 5
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  // const {postList} = useSelector((state) => state.post.postList);
+
   const { postList, totalPageNum } = useSelector((state) => ({
     postList: state.post.postList || [],
     totalPageNum: state.post.totalPageNum || 0,
@@ -34,7 +34,8 @@ const NoticePage = () => {
 
   const handleWriteClick = () => {
     dispatch(postAction.setMode('new'));
-    navigate("/posting")
+    navigate("/posting", { state: { selectedCategory: '공지사항' } });
+    // navigate("/posting")
   }
 
   const handlePageClick = ({ selected }) => {

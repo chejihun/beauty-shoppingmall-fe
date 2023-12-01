@@ -50,6 +50,7 @@
   border-bottom: none;
 }
 .tbody tr {
+
   display: grid;
   grid-template-columns: 8% 70% 12% 10%;
   height: 60px;
