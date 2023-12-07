@@ -116,6 +116,7 @@
   margin: auto;
   width: 50%;
   height: 80%;
+  background-color: aqua;
   background-image: url('../image/brand-img2.jpg');
   background-size: cover;
   background-repeat: repeat;

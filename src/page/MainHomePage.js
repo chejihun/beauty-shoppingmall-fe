@@ -1,7 +1,7 @@
 import React, { useRef, useState }  from "react";
 import SlideBanner from "../component/SlideBanner";
 import HomeBrandPage from "../component/HomeBrandPage";
-
+import HomeBestProduct from "../component/HomeBestProduct";
 
 const MainHomePage = () => {
   return (
@@ -9,10 +9,9 @@ const MainHomePage = () => {
       
       <SlideBanner />
       <HomeBrandPage />
-      <div  className="box3">
+      <HomeBestProduct />
+      <div className="box3">
         화면3
-        <input type="file"/>
-        <button onClick={() => {}}>업로드</button>
       </div>
     </div>
   )

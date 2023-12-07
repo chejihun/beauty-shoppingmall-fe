@@ -93,7 +93,7 @@ const AdminPage = () => {
         <ReactPaginate
           nextLabel=">"
           onPageChange={handlePageClick}
-          pageRangeDisplayed={5}
+          pageRangeDisplayed={10}
           pageCount={totalPageNum}
           forcePage={searchQuery.page - 1} // 1페이지면 2임 여긴 한개씩 +1 해야함
           previousLabel="<"

@@ -39,7 +39,6 @@ const AppNavMenu = ({ showAppMenu, setShowAppMenu, setShowModalSearch, logout, c
     if (user) {
       dispatch(cartAction.getCartQty());
     }
-
   }, [showAppMenu, user])
 
   return (

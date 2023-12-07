@@ -17,8 +17,18 @@
   font-size: 18px;
 }
 .card > div:nth-child(3) {
+  width: 300px;
   padding-left: 15px;
   color: #7e7e7e;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  word-break: break-all;
+  white-space: normal;
+  height: auto;
 }
 .card >div:last-child {
   padding-left: 15px;
@@ -103,6 +113,7 @@
 
 @media screen and (min-width:551px)  and (max-width: 767px) {
   .store-card {
+    margin: 0 auto;
     grid-template-columns: repeat(1, auto);
     grid-template-rows: repeat(auto);
   }
@@ -110,6 +121,7 @@
 
 @media screen and (max-width: 550px) {
   .store-card {
+    margin: 0 auto;
     grid-template-columns: repeat(1, auto);
     grid-template-rows: repeat(auto);
   }

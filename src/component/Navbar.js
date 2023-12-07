@@ -60,19 +60,19 @@ const Navbar = () => {
   }, [user]);
 
   return (
-    <div className={`navbar-area ${homePage ? 'home-page' : ''}`}>
+    <div className="navbar-area">
       {/* 기본 웹 메뉴 */}
       <div className="nav-web-menu">
         <div className="nav-menu1">
           <h2
-            className={`web-logo ${homePage ? "white-text" : "black-text"}`}
+            className="web-logo"
             onClick={() => handleLogoClick()}
           >
             N<span>&</span>B
           </h2>
           {menuList.map((menu, index) => (
             <div
-              className={`nav-list ${homePage ? "white-text" : "black-text"}`}
+              className="nav-list"
               key={index}
               onClick={() => handleMenuClick(menu.path)}
             >
@@ -82,19 +82,13 @@ const Navbar = () => {
 
           {/* sns 아이콘 메뉴 */}
           <div className="web-i-bottom-menu">
-            <div
-              className={`web-i-bottom-menu-list ${homePage ? "white-text" : "black-text"}`}
-            >
+            <div className="web-i-bottom-menu-list">
               <FaFacebookF />
             </div>
-            <div
-              className={`web-i-bottom-menu-list ${homePage ? "white-text" : "black-text"}`}
-            >
+            <div className="web-i-bottom-menu-list">
               <FaInstagram />
             </div>
-            <div
-              className={`web-i-bottom-menu-list ${homePage ? "white-text" : "black-text"}`}
-            >
+            <div className="web-i-bottom-menu-list">
               <TfiYoutube />
             </div>
           </div>
@@ -102,28 +96,25 @@ const Navbar = () => {
         <div className="nav-menu2">
           <div>
             {user ? (
-              <div onClick={logout} className={`nav-i-list ${homePage ? "white-text" : "black-text"}`}>
+              <div onClick={logout} className="nav-i-list">
                 <BiLogOut className="nav-i-login" />
                 <span className="i-message i-message-logout">로그아웃</span>
               </div>
             ) : (
-              <div onClick={() => navigate("/login")} className={`nav-i-list ${homePage ? "white-text" : "black-text"}`}>
+              <div onClick={() => navigate("/login")} className="nav-i-list">
 
                 <FaRegUser className="nav-i-login" />
                 <span className="i-message i-message-login">로그인 / 회원가입</span>
               </div>
             )}
           </div>
-          <div
-            className={`nav-i-list ${homePage ? "white-text" : "black-text"}`}
-            onClick={() => navigate("/cart")}
-          >
+          <div className="nav-i-list" onClick={() => navigate("/cart")}>
             <BiShoppingBag />
             <span className="shop-count"> {`${cartItemCount || 0}`} </span>
             <span className="i-message i-message-logout">장바구니</span>
           </div>
           <div
-            className={`nav-i-list ${homePage ? "white-text" : "black-text"}`}
+            className="nav-i-list"
             onClick={handleClickModalSearch}
           >
             <BiSearch />
@@ -132,12 +123,10 @@ const Navbar = () => {
 
           {/* admin 계정으로 로그인시 보이는 설정 페이지 */}
           {user && user.level === "admin" && (
-            <Link to="/admin"
-              className={`nav-i-list ${homePage ? "white-text" : "black-text"}`}
-            >
+            <div className="nav-i-list admin-setting" onClick={() => navigate("/admin")}>
               <FiSettings />
               <span className="i-message i-message-logout">상품 설정</span>
-            </Link>
+            </div>
           )}
         </div>
       </div>

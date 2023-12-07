@@ -10,9 +10,6 @@ import { userAction } from "../action/userAction";
 
 const Post = () => {
 
-  // const state = useSelector((state) => state);
-  // console.log("state",state);
-
   const { id } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -51,7 +48,7 @@ const Post = () => {
       <div className="post-from">
         <div className="post-type">
           {selectedPost && selectedPost.category}
-          <p>공지사항</p>
+          <p>{selectedPost && selectedPost.category}</p>
           <p>새로운 소식을 전해드립니다</p>
         </div>
 

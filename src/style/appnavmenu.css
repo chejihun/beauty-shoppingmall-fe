@@ -8,7 +8,6 @@
   right: 0;
   background-color: #fff;
   border-left: 1px solid #afafaf;
-  /* backdrop-filter: blur(50px), grayscale(70%); 왜 이것만 적용안되냐 */
 }
 .nav-app-close {
   position: absolute;

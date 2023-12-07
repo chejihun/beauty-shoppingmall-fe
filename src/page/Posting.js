@@ -13,9 +13,16 @@ const Posting = () => {
   const [category, setCategory] = useState(selectedCategory);
   const { state } = useLocation();
   const categories = ['공지사항', '상품후기', '이벤트'];
+  const categoryMappings = {
+    '공지사항': 'notice',
+    '상품후기': 'reviews',
+    '이벤트': 'event'
+  };
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   // const [category, setCategory] = useState('');
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
 
   const mode = useSelector((state) => state.post.mode);
   const postId = useSelector((state) => state.post.selectedPost ? state.post.selectedPost._id : null);
@@ -44,16 +51,28 @@ const Posting = () => {
     } else {
       // 새로운 모드
       dispatch(postAction.createPost({ title, description, category }));
-      navigate('/notice')
+      const fromCategory = location?.state?.selectedCategory || '';
+      const fromPath = categoryMappings[fromCategory] || '';
+      navigate(`/${fromPath}`);
     }
+  };
+
+  const handleStartDateChange = (event) => {
+    setStartDate(event.target.value);
+  };
+
+  const handleEndDateChange = (event) => {
+    setEndDate(event.target.value);
   };
 
   useEffect(() => {
     if (state && state.postData) {
-      const { title, description, category } = state.postData;
+      const { title, description, category, startDate, endDate } = state.postData;
       setCategory(category)
       setTitle(title);
       setDescription(description);
+      setStartDate(startDate);
+      setEndDate(endDate);
     }
   }, [state]);
 
@@ -113,6 +132,28 @@ const Posting = () => {
           ))}
         </select>
 
+        {category === '이벤트' && (
+          <div>
+            <label htmlFor='startDate'>시작 날짜:</label>
+            <input
+              type='date'
+              id='startDate'
+              value={startDate}
+              onChange={handleStartDateChange}
+              style={{ width: '100%', marginBottom: '10px' }}
+            />
+
+            <label htmlFor='endDate'>종료 날짜:</label>
+            <input
+              type='date'
+              id='endDate'
+              value={endDate}
+              onChange={handleEndDateChange}
+              style={{ width: '100%', marginBottom: '10px' }}
+            />
+          </div>
+        )}
+
         <label htmlFor='title'>제목:</label>
         <input
           type='text'
@@ -132,13 +173,13 @@ const Posting = () => {
             formats={formats}
           />
         </div>
-
+        
         <button
           type='submit'
           disabled={!category}
           className="write"
         >
-          {mode  === 'new' ? '작성하기' : '수정하기'}
+          {mode === 'new' ? '작성하기' : '수정하기'}
         </button>
       </form>
     </div>
