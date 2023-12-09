@@ -16,6 +16,9 @@ const ProductDetail = () => {
   const { id } = useParams();
   const [sizeError, setSizeError] = useState(false);
   const navigate = useNavigate();
+  const productList = useSelector((state) => state.product.productList)
+  const productDetailCategory = selectedProduct && selectedProduct.category;
+  const filteredProductList = productList.filter(item => selectedProduct && selectedProduct.category === productDetailCategory);
 
   const addItemToCart = () => {
     if (size === "") {
@@ -35,15 +38,20 @@ const ProductDetail = () => {
     setSize(value)
   };
 
+  const showProduct = (id) => {
+    navigate(`/product/${id}`);
+  };
+
   useEffect(() => {
     dispatch(productAction.getProductDetail(id));
+    dispatch(productAction.getProductList())
   }, [id]);
 
   return (
     <Container className="product-detail-card">
       <div className="product-detail-category">
         Product  &nbsp; &gt; &nbsp; {selectedProduct && selectedProduct.category
-      }</div>
+        }</div>
       <Row>
         <Col sm={6}>
           {selectedProduct && selectedProduct.image && (
@@ -103,6 +111,25 @@ const ProductDetail = () => {
             장바구니에 추가
           </Button>
         </Col>
+      </Row>
+      <Row className="fixed-content-area">
+        <div className="fixed-content">
+          <h3>제품과 비슷한 추천상품</h3>
+          <p>이 상품을 구매한 고객들이 함께 본 상품입니다.</p>
+          <div className="store-card">
+            {filteredProductList.slice(0, 4).map((item) => (
+              <div key={item._id}>
+                <div className="pro-detail-card" onClick={() => showProduct(item._id)}>
+                  <img src={item?.image} alt={item?.image} className="detail-card-img" />
+                  <div>{item?.name}</div>
+                  <div>{item?.description}</div>
+                  <div>₩ {currencyFormat(item?.price)}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
       </Row>
     </Container>
   );

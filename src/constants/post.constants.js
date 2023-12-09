@@ -16,3 +16,4 @@ export const POST_DELETE_SUCCESS ="POST_DELETE_SUCCESS";
 export const POST_DELETE_FAIL ="POST_DELETE_FAIL";
 export const SET_SELECTED_POST ="SET_SELECTED_POST";
 export const SET_MODE = 'SET_MODE';
+export const CLEAR = 'CLEAR'

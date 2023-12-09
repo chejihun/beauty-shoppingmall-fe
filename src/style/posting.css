@@ -2,7 +2,7 @@
   padding-top: 100px;
   width: 60%;
   margin: 0 auto;
-
+  min-height: calc(100vh - 425px);
 }
 .quill-hi {
   height: 500px;
@@ -14,6 +14,7 @@
 }
 .write {
   padding: 5px 10px;
+  margin-bottom: 100px;
 }
 
 
@@ -22,7 +23,7 @@
 .post-area {
   display: flex;
   justify-content: center;
-  /* background-color: aqua; */
+  min-height: calc(100vh - 425px);
 }
 .post-from {
   display: flex;
@@ -67,12 +68,15 @@
   padding : 15px 0 0 15px ;
 }
 .post-content {
-  /* background-color: aqua; */
   width: 100%;
   padding: 20px;
   padding-bottom: 50px;
   border-bottom: 1px solid #cacaca;
   word-wrap: break-word;
+}
+.post-content img {
+  width: 100%;
+  height: auto;
 }
 .post-btn {
   margin-top: 30px;
@@ -88,6 +92,7 @@
   padding: 7px 15px;
   letter-spacing: 2px;
   border-radius: 5px;
+  margin-bottom: 100px;
 }
 .move-notice:nth-child(2) {
   margin-left: 10px;

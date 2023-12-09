@@ -5,9 +5,10 @@ import { useNavigate, useLocation } from "react-router-dom";
 import "../style/posting.css"
 import "react-quill/dist/quill.snow.css"
 import ReactQuill from "react-quill"
+import CloudinaryUploadWidget from "../utils/CloudinaryUploadWidge";
+
 
 const Posting = () => {
-
   const location = useLocation();
   const { selectedCategory } = location.state || { selectedCategory: '' };
   const [category, setCategory] = useState(selectedCategory);
@@ -20,12 +21,13 @@ const Posting = () => {
   };
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  // const [category, setCategory] = useState('');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
+  const [image, setImage] = useState('');
 
   const mode = useSelector((state) => state.post.mode);
   const postId = useSelector((state) => state.post.selectedPost ? state.post.selectedPost._id : null);
+  const loading = useSelector((state) => state.post.loading);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -42,18 +44,24 @@ const Posting = () => {
     setCategory(event.target.value);
   };
 
+  const uploadImagePost = (url) => {
+    setImage(url);
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
+    if (loading) return;
+    const postData = { title, description, category, image, startDate, endDate, navigate}
     if (mode === 'edit' && postId) {
       // 수정 모드
-      dispatch(postAction.editPost({ title, description, category }, postId));
-      navigate(`/post/${postId}`);
+      const navigateTo = `/post/${postId}`
+      dispatch(postAction.editPost({...postData, navigateTo, postId}))
     } else {
       // 새로운 모드
-      dispatch(postAction.createPost({ title, description, category }));
       const fromCategory = location?.state?.selectedCategory || '';
       const fromPath = categoryMappings[fromCategory] || '';
-      navigate(`/${fromPath}`);
+      const navigateTo = `/${fromPath}`
+      dispatch(postAction.createPost({...postData, navigateTo}));
     }
   };
 
@@ -67,12 +75,13 @@ const Posting = () => {
 
   useEffect(() => {
     if (state && state.postData) {
-      const { title, description, category, startDate, endDate } = state.postData;
+      const { title, description, category, image, startDate, endDate } = state.postData;
       setCategory(category)
       setTitle(title);
       setDescription(description);
       setStartDate(startDate);
       setEndDate(endDate);
+      setImage(image)
     }
   }, [state]);
 
@@ -89,7 +98,8 @@ const Posting = () => {
         { indent: "-1" },
         { indent: "+1" },
       ],
-      ["link", "image"],
+      ["link"],
+      ['image', { 'imageSrc': true }],
       [{ align: [] }, { color: [] }, { background: [] }], // dropdown with defaults from theme
       ["clean"],
     ],
@@ -173,6 +183,19 @@ const Posting = () => {
             formats={formats}
           />
         </div>
+        
+        <div className="mb-3" controlId="Image" required>
+        <div>Image</div>
+        <CloudinaryUploadWidget uploadImage={uploadImagePost} className="Cloudinary" />
+
+        <img
+          id="uploadedimage"
+          src={image}
+          className="upload-image mt-2"
+          alt="uploadedimage"
+
+        />
+      </div>
         
         <button
           type='submit'

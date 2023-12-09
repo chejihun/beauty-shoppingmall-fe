@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { commonUiAction } from "../action/commonUiAction";
 import { useDispatch, useSelector } from "react-redux";
 import { postAction } from "../action/postAction";
-import { useNavigate, useSearchParams } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import QuillRender from "../component/QuillRender"
 import DOMPurify from 'dompurify';
 import { userAction } from "../action/userAction";
@@ -13,21 +13,25 @@ const Post = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation()
+  const category = location?.state?.category;
   const selectedPost = useSelector((state) => state.post.selectedPost);
   const sanitizedHTML = DOMPurify.sanitize(selectedPost);
-
-  const handleNoticeClick = () => {
-    navigate("/notice")
+  const navigateTo = category === '이벤트' ? '/event' : '/notice'
+  const handleToList = () => {
+    navigate(navigateTo)
   }
 
-  const handlePostEdit = () => {
+  const handleEdit = () => {
     dispatch(postAction.setMode('edit'));
     dispatch(postAction.getPostDetail(id));
     navigate('/posting', { state: { postData: selectedPost } });
   }
-  const handlePostDelete = () => {
-    dispatch(postAction.deletePost(id));
-    navigate("/notice");
+  const handleDelete = () => {
+    const confirm = window.confirm('정말 삭제하시겠습니까?');
+    if (confirm) {
+      dispatch(postAction.deletePost({postId: id, navigate, navigateTo}));
+    }
   };
 
   const stripHtmlTags = (htmlString) => {
@@ -61,14 +65,17 @@ const Post = () => {
           <div>{selectedPost && selectedPost.title}</div>
         </div>
 
-        <div className="post-content" >
+        <div className="post-content">
           <QuillRender quillText={selectedPost && selectedPost.description} />
+          {selectedPost && selectedPost.image && (
+            <img src={selectedPost.image} alt="Post" />
+          )}
         </div>
 
         <div className="post-btn">
           <div>
             <button
-              onClick={handleNoticeClick}
+              onClick={handleToList}
               className="move-notice"
             >목록
             </button>
@@ -78,10 +85,10 @@ const Post = () => {
             <div>
               {selectedPost && selectedPost.rightEdit && (
                 <div>
-                  <button onClick={handlePostEdit} className="move-notice">
+                  <button onClick={handleEdit} className="move-notice">
                     수정
                   </button>
-                  <button onClick={handlePostDelete} className="move-notice">
+                  <button onClick={handleDelete} className="move-notice">
                     삭제
                   </button>
                 </div>

@@ -83,6 +83,7 @@
 .cart-area {
   width: 80%;
   margin-top: 100px;
+  min-height: calc(100vh - 425px);
 }
 .empty-bag{
   padding: 20px;

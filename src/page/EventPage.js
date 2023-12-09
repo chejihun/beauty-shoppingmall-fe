@@ -29,9 +29,12 @@ const EventPage = () => {
   };
 
   useEffect(() => {
-    dispatch(postAction.getPostList());
+    dispatch(postAction.getPostList({category: '이벤트'}));
   }, [dispatch, query]);
 
+  useEffect(() => {
+    return () => dispatch(postAction.clearPost())
+  },[])
 
   const renderEventList = () => {
     // 여기에 이벤트 데이터를 가져와서 현재 탭에 맞게 필터링하는 로직을 추가해야 합니다.
@@ -44,17 +47,7 @@ const EventPage = () => {
     );
   };
 
-  const showPost = (id) => {
-    navigate(`/post/${id}`);
-  };
-
-  // 카테고리가 "공지사항"인 게시물만 필터링하는 함수
-  const filterEventPosts = (posts) => {
-    return posts.filter(post => post.category.includes('이벤트'));
-  };
-
-  // postList에서 "공지사항" 카테고리인 게시물만 가져오도록 수정
-  const filterPostList = filterEventPosts(postList);
+  const showPost = (id) => navigate(`/post/${id}`);
 
 
   return (
@@ -84,19 +77,18 @@ const EventPage = () => {
           종료된 이벤트
         </button>
       </div>
-      {renderEventList()}
 
-      <Container className="event-area">
+      <div className="event-area">
         <div className="event-card-grid">
-          {filterPostList && (
-            filterPostList.map((post) => (
+          {postList && (
+            postList.map((post) => (
               <div>
                 <EventCard post={post} />
               </div>
             ))
           )}
         </div>
-      </Container>
+      </div>
 
 
 

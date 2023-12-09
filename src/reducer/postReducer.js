@@ -3,7 +3,7 @@ const initialState = {
   loading: false,
   error: "",
   postList: [],
-  totalPageNum: 1,
+  totalPostNum: 1,
   selectedPost: null,
   mode: 'new',
 };
@@ -12,7 +12,7 @@ function postReducer(state = initialState, action) {
   const { type, payload } = action;
   switch (type) {
 
-    case 'SET_MODE':
+    case types.SET_MODE:
       return { ...state, mode: payload };
       
     case types.POST_CREATE_REQUEST:
@@ -32,7 +32,8 @@ function postReducer(state = initialState, action) {
         loading: false,
         error: "",
         postList: payload.postList,
-        totalPageNum: payload.totalPageNum
+        totalPostNum: payload.totalPostNum,
+        page: payload.page,
       }
     case types.GET_POST_SUCCESS: {
       return {...state, loading: false, selectedPost: payload };
@@ -47,6 +48,8 @@ function postReducer(state = initialState, action) {
 
     case types.SET_SELECTED_POST:
       return { ...state, selectedPost: payload }
+    case types.CLEAR:
+      return initialState
     default:
       return state;
   }

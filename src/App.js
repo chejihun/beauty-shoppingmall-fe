@@ -16,9 +16,10 @@ import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect } from "react";
 import AdminPage from "./page/AdminPage";
 import ProductDetail from "./page/ProductDetail";
-import CartPage from "./page/Cartpage";
+import CartPage from "./page/CartPage";
 import Posting from "./page/Posting";
 import Post from "./page/Post";
+import Footer from "./component/Footer";
 
 const App = () => {
 
@@ -46,10 +47,10 @@ const App = () => {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/admin" element={<AdminPage />} />
-        <Route path="/cart" element={<CartPage />} />
-        
-
+        <Route path="/cart" element={<CartPage />} /> 
       </Routes>
+
+      <Footer/>
     </div >
   );
 }
