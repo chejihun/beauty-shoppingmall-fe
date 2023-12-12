@@ -52,7 +52,7 @@ const Post = () => {
       <div className="post-from">
         <div className="post-type">
           {selectedPost && selectedPost.category}
-          <p>{selectedPost && selectedPost.category}</p>
+          <p>{selectedPost && selectedPost.category} 게시판</p>
           <p>새로운 소식을 전해드립니다</p>
         </div>
 
@@ -60,7 +60,7 @@ const Post = () => {
           <div>작성자</div>
           <div>{selectedPost && selectedPost.userName}</div>
         </div>
-        <div className="post-name">
+        <div className="post-name post-line">
           <div>제목</div>
           <div>{selectedPost && selectedPost.title}</div>
         </div>

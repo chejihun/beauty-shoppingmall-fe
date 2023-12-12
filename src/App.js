@@ -1,6 +1,6 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Route, Routes } from "react-router";
+import { Route, Routes, Outlet } from "react-router";
 import MainHomePage from "./page/MainHomePage";
 import Navbar from "./component/Navbar";
 import BrandPage from "./page/BrandPage";
@@ -12,7 +12,7 @@ import LoginPage from "./page/LoginPage";
 import RegisterPage from "./page/RegisterPage";
 import ToastMessage from "./component/ToastMessage";
 import { userAction } from "./action/userAction";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import React, { useEffect } from "react";
 import AdminPage from "./page/AdminPage";
 import ProductDetail from "./page/ProductDetail";
@@ -20,6 +20,8 @@ import CartPage from "./page/CartPage";
 import Posting from "./page/Posting";
 import Post from "./page/Post";
 import Footer from "./component/Footer";
+import NotFoundPage from "./page/NotFoundPage";
+import PrivateRoute from "./routes/PrivateRoute";
 
 const App = () => {
 
@@ -42,17 +44,22 @@ const App = () => {
         <Route path="/product/:id" element={<ProductDetail />} />
         <Route path={ROUTE_PATH.EVENT} element={<EventPage />} />
         <Route path={ROUTE_PATH.NOTICE} element={<NoticePage />} />
-        <Route path="/posting" element={<Posting/>} />
-        <Route path="/post/:id" element={<Post/>} />
+        <Route path="/post/:id" element={<Post />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
-        <Route path="/admin" element={<AdminPage />} />
-        <Route path="/cart" element={<CartPage />} /> 
+
+        <Route path="/admin" element={ <AdminPage />}/>
+        <Route path="/posting" element={<Posting />} />
+
+        <Route path="/cart" element={<CartPage />} />
+        <Route path="/events/:status" element={<EventPage />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
 
-      <Footer/>
+      <Footer />
     </div >
   );
+
 }
 
 export default App;

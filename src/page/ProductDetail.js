@@ -53,7 +53,7 @@ const ProductDetail = () => {
         Product  &nbsp; &gt; &nbsp; {selectedProduct && selectedProduct.category
         }</div>
       <Row>
-        <Col sm={6}>
+        <Col sm={6} className="sss">
           {selectedProduct && selectedProduct.image && (
             <img src={selectedProduct.image} className="pd-img" alt="image" />
           )}
@@ -116,18 +116,18 @@ const ProductDetail = () => {
         <div className="fixed-content">
           <h3>제품과 비슷한 추천상품</h3>
           <p>이 상품을 구매한 고객들이 함께 본 상품입니다.</p>
-          <div className="store-card">
+          <Row className="store-card">
             {filteredProductList.slice(0, 4).map((item) => (
-              <div key={item._id}>
+              <Col key={item._id}>
                 <div className="pro-detail-card" onClick={() => showProduct(item._id)}>
                   <img src={item?.image} alt={item?.image} className="detail-card-img" />
                   <div>{item?.name}</div>
                   <div>{item?.description}</div>
                   <div>₩ {currencyFormat(item?.price)}</div>
                 </div>
-              </div>
+              </Col>
             ))}
-          </div>
+          </Row>
         </div>
 
       </Row>

@@ -9,7 +9,7 @@ import ReactPaginate from "react-paginate";
 import queryString from 'query-string';
 
 const NoticePage = () => {
-  const pageSize = 5
+  const pageSize = 10
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const location = useLocation();

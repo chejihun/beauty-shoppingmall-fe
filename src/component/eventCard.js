@@ -7,23 +7,17 @@ const EventCard = ({ post }) => {
   const navigate = useNavigate();
 
   const showPost = (id) => {
-    navigate(`/post/${id}`, {state: {category: '이벤트'}});
+    navigate(`/post/${id}`, { state: { category: '이벤트' } });
   };
-  const getDaysRemaining = (endDate) => {
-    const now = new Date();
-    const end = new Date(endDate);
-  
-    // 날짜 형식이 유효하지 않으면 0을 반환하도록 수정
-    if (isNaN(end)) {
-      console.error('Invalid date format for endDate:', endDate);
-      return 0;
-    }
-  
-    const timeDifference = end - now;
-    const daysRemaining = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
-  
-    return daysRemaining;
+  const calculateDaysLeft = (endDate) => {
+    const currentDate = new Date();
+    const endDateTime = new Date(endDate);
+    const timeDifference = endDateTime - currentDate;
+    const daysLeft = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
+    return daysLeft;
   };
+
+  const daysLeft = calculateDaysLeft(post.endDate);
 
   return (
     <div className='event-card' onClick={() => showPost(post._id)}>
@@ -32,7 +26,11 @@ const EventCard = ({ post }) => {
       </div>
       <div className='event-title'>{post.title}</div>
       <div className="event-date">
-        {new Date(post.createdAt).toLocaleDateString()} - {new Date(post.endDate).toLocaleDateString()} ({getDaysRemaining(post.endDate)}일 남음)
+        {daysLeft >= 0 ? (
+          `이벤트 종료 날짜는 ${daysLeft}일 남았습니다.`
+        ) : (
+          "이벤트가 종료되었습니다."
+        )}
       </div>
     </div>
   );

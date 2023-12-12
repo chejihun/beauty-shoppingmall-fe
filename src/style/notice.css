@@ -3,7 +3,7 @@
   text-align: right;
   margin: 0 auto;
   max-width: 1300px;
-  width: 70%;
+  width: 80%;
   margin-bottom: 10px;
 }
 .write-btn {
@@ -14,6 +14,8 @@
   font-weight: 500;
 }
 .notice-area {
+  max-width: 1500px;
+  width: 100%;
   text-align: center;
   margin: 0 auto;
   margin-top: 100px;
@@ -33,7 +35,7 @@
 .notice-table {
   display: grid;
   max-width: 1300px;
-  width: 70%;
+  width: 80%;
   margin: 0 auto;
 }
 .thead tr {
@@ -49,23 +51,86 @@
   margin: auto 0;
   border-bottom: none;
 }
-.tbody tr {
+.postcard {
   display: grid;
   grid-template-columns: 8% 70% 12% 10%;
   height: 60px;
+  border-bottom: 1px solid #e0e0e0;
+  /* border: none; */
 }
-.tbody tr th  {
+.postcard th  {
   font-size: 14px;
   font-weight: 400;
   color:#6e6e6e;
   padding-top: 19px;
   background-color: transparent;
-
+  border: none;
 }
 .n-paginate {
   margin-top: 30px ;
 }
-
 .notice-card-title {
   cursor: pointer;
+}
+
+@media screen and (min-width: 670px) and (max-width: 1000px) {
+  .notice-th {
+    font-size: 12px;
+  }
+  .thead tr {
+    grid-template-columns: 8% 65% 16% 11%;
+  }
+  .tbody tr {
+    grid-template-columns: 8% 65% 16% 11%;
+  }
+  .tbody tr th  {
+    font-size: 12px;
+    align-items: center;
+  }
+}
+@media screen and (max-width: 669px) {
+  .thead {
+    display: none;
+  }
+  .tbody {
+    border-top: 1px solid #e0e0e0;
+  }
+  .postcard {
+    display: flex;
+    justify-self: start;
+    height: 70px;
+    flex-wrap: wrap;
+  }
+  .postcard:first-child {
+    background-color: #f5f5f5;
+  }
+  .postcard th  {
+    font-size: 12px;
+    padding: 0px;
+    height: 35px;
+    text-align: left;
+    padding-left: 15px;
+  }
+  .postcard th:first-child {
+    display: none;
+  }
+  .postcard th:nth-child(2) {
+    width: 95%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding-top: 10px;
+    color: #000;
+    font-size: 15px;
+  }
+  .postcard th:nth-child(3) {
+    width: 88px
+  }
+  .postcard th:nth-child(4) {
+    padding-left: 0px;
+  }
+  .notice-table {
+    width: 100%;
+  }
+  
 }

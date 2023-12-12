@@ -48,6 +48,16 @@ const Posting = () => {
     setImage(url);
   };
 
+  const handleStartDateChange = (event) => {
+    const selectedDate = event.target.value;
+    setStartDate(selectedDate);
+  };
+
+  const handleEndDateChange = (event) => {
+    const selectedDate = event.target.value;
+    setEndDate(selectedDate);
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     if (loading) return;
@@ -63,14 +73,6 @@ const Posting = () => {
       const navigateTo = `/${fromPath}`
       dispatch(postAction.createPost({...postData, navigateTo}));
     }
-  };
-
-  const handleStartDateChange = (event) => {
-    setStartDate(event.target.value);
-  };
-
-  const handleEndDateChange = (event) => {
-    setEndDate(event.target.value);
   };
 
   useEffect(() => {

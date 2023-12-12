@@ -1,6 +1,7 @@
 import React from 'react'
 import { IoIosCall } from "react-icons/io";
 import "../style/footer.css"
+import "../App.css"
 
 const Footer = () => {
   return (

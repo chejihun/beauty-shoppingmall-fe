@@ -11,7 +11,7 @@ export const clearPost = () => ({
   type: types.CLEAR,
 })
 
-const createPost = ({ title, description, category, image, navigate, navigateTo }) => async (dispatch, getState) => {
+const createPost = ({ title, description, category, image, navigate, navigateTo, startDate, endDate }) => async (dispatch, getState) => {
   try {
     dispatch({ type: types.POST_CREATE_REQUEST })
     const mode = getState().post.mode;
@@ -19,8 +19,11 @@ const createPost = ({ title, description, category, image, navigate, navigateTo 
       title,
       description,
       category,
-      image
+      image,
+      startDate,
+      endDate,
     });
+
     if (response.status !== 200) {
       throw new Error(response.error)
     }

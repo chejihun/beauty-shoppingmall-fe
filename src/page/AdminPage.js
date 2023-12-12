@@ -23,6 +23,8 @@ const AdminPage = () => {
     page: query.get("page") || 1,
     name: query.get("name") || "",
   });
+  const user = useSelector((state) => (state.user.user));
+  console.log("user", user)
 
   const tableHeader = [
     "#",
@@ -34,19 +36,6 @@ const AdminPage = () => {
     "Status",
     "Delete / Edit",
   ];
-
-  useEffect(() => {
-    dispatch(productAction.getProductList({ ...searchQuery }))
-  }, [query]);
-
-  useEffect(() => {
-    if (searchQuery.name === "") {
-      delete searchQuery.name
-    }
-    const params = new URLSearchParams(searchQuery)
-    const query = params.toString();
-    navigate("?" + query)
-  }, [searchQuery]);
 
   const deleteItem = (id) => {
     dispatch(productAction.deleteProduct(id))
@@ -66,6 +55,19 @@ const AdminPage = () => {
   const handlePageClick = ({ selected }) => {
     setSearchQuery({ ...searchQuery, page: selected + 1 })
   };
+  
+  useEffect(() => {
+    dispatch(productAction.getProductList({ ...searchQuery }))
+  }, [query]);
+
+  useEffect(() => {
+    if (searchQuery.name === "") {
+      delete searchQuery.name
+    }
+    const params = new URLSearchParams(searchQuery)
+    const query = params.toString();
+    navigate("?" + query)
+  }, [searchQuery]);
 
   return (
     <div className="setting-area">

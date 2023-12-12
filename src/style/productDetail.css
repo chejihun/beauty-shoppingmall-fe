@@ -79,11 +79,12 @@
 }
 .detail-card-img {
   width: 100%;
-  height: 300px;
+  max-height: 300px;
   object-fit: cover;
   cursor: pointer;
   margin-bottom: 20px;
   border-radius: 10px;
+  
 }
 .pro-detail-card div:nth-child(2) {
   font-weight: 600;
@@ -101,4 +102,23 @@
   white-space: normal;
   height: auto;
   margin-bottom: 10px;
+}
+.store-card {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+}
+
+@media all and (max-width:950px) {
+  .store-card {
+    grid-template-columns: repeat(2, auto);
+  }
+  .pd-img {
+    width: 100%;
+    justify-content: center; 
+  }
+  .product-info-area {
+    padding:0 10px ;
+    justify-content: center;
+    text-align: center;
+  }
 }

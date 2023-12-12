@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
-import Button from "react-bootstrap/Button";
+import { useNavigate, useSearchParams, useParams } from 'react-router-dom';
 import "../style/notice.css"
 import "../style/event.css"
 import { useDispatch, useSelector } from "react-redux";
 import { postAction } from '../action/postAction';
 import EventCard from '../component/eventCard';
-import { Container } from "react-bootstrap";
+import { Button, Container, Row, Col } from "react-bootstrap";
 
 const EventPage = () => {
 
@@ -17,38 +16,47 @@ const EventPage = () => {
   const { postList } = useSelector((state) => ({
     postList: state.post.postList || [],
   }));
+  const [morePost, setMorePost] = useState(6);
+  const { status } = useParams();
+  const isCompleted = status === 'completed';
+  const showPost = (id) => navigate(`/post/${id}`);
+  const [showCompleted, setShowCompleted] = useState(isCompleted);
+  const [activeTab, setActiveTab] = useState('ongoing');
 
   const handleWriteClick = () => {
     dispatch(postAction.setMode('new'));
     navigate("/posting", { state: { selectedCategory: '이벤트' } });
   }
-  const [activeTab, setActiveTab] = useState('ongoing'); // 'ongoing' 또는 'completed'
 
   const handleTabChange = (tab) => {
-    setActiveTab(tab);
+    setShowCompleted(tab === 'completed');
+    if (tab === 'completed') {
+      setActiveTab('completed')
+      navigate('/events/completed');
+    } else {
+      setActiveTab('ongoing')
+      navigate('/events/ongoing');
+    }
+  };
+  
+  const calculateDaysLeft = (endDate) => {
+    const currentDate = new Date();
+    const endDateTime = new Date(endDate);
+    const timeDifference = endDateTime - currentDate;
+    return Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
+  };
+
+  const handleShowMoreClick = () => {
+    setMorePost((prev) => prev + 6);
   };
 
   useEffect(() => {
-    dispatch(postAction.getPostList({category: '이벤트'}));
+    dispatch(postAction.getPostList({ category: '이벤트' }));
   }, [dispatch, query]);
 
   useEffect(() => {
     return () => dispatch(postAction.clearPost())
-  },[])
-
-  const renderEventList = () => {
-    // 여기에 이벤트 데이터를 가져와서 현재 탭에 맞게 필터링하는 로직을 추가해야 합니다.
-    // 예: const filteredEvents = events.filter(event => event.status === activeTab);
-    // 그 후에 filteredEvents를 기반으로 이벤트 목록을 렌더링합니다.
-    return (
-      <div>
-        {/* 이벤트 목록 렌더링 로직 */}
-      </div>
-    );
-  };
-
-  const showPost = (id) => navigate(`/post/${id}`);
-
+  }, [])
 
   return (
     <div className='notice-area'>
@@ -79,15 +87,31 @@ const EventPage = () => {
       </div>
 
       <div className="event-area">
-        <div className="event-card-grid">
-          {postList && (
-            postList.map((post) => (
-              <div>
-                <EventCard post={post} />
-              </div>
-            ))
-          )}
-        </div>
+        <Row className="event-card-grid">
+          {postList &&
+            postList
+              .filter((post) =>
+                showCompleted ? calculateDaysLeft(post.endDate) <= 0 : calculateDaysLeft(post.endDate) > 0
+              )
+              .slice(0, morePost)
+              .map((post) => (
+                <Col key={post._id}>
+                  <EventCard post={post} />
+                </Col>
+              ))}
+        </Row>
+      </div >
+
+      <div className="event-more-area">
+        {morePost < postList.length && (
+          <div>
+            <button
+              onClick={handleShowMoreClick}
+              className="event-more-btn"
+            >
+              More +</button>
+          </div>
+        )}
       </div>
 
 

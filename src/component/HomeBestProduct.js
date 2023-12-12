@@ -33,8 +33,11 @@ const HomeBestProduct = () => {
   const settings = {
     className: "slider variable-width",
     dots: false,
-    infinite: true, //무한 반복
+    infinite: true,
+    autoplay: true,
+    autoplaySpeed: 5000,
     centerMode: false,
+    draggable: true,
     slidesToShow: 1,
     slidesToScroll: 1,
     variableWidth: true,
