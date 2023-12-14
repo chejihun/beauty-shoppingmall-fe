@@ -22,6 +22,8 @@ import Post from "./page/Post";
 import Footer from "./component/Footer";
 import NotFoundPage from "./page/NotFoundPage";
 import PrivateRoute from "./routes/PrivateRoute";
+import PaymentPage from "./page/PaymentPage";
+import OrderCompletePage from "./page/orderCompletePage";
 
 const App = () => {
 
@@ -48,11 +50,18 @@ const App = () => {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
 
-        <Route path="/admin" element={ <AdminPage />}/>
-        <Route path="/posting" element={<Posting />} />
+        <Route element={<PrivateRoute permissionLevel="admin" />}>
+          <Route path="/admin" element={<AdminPage />} />
+          <Route path="/posting" element={<Posting />} />
+        </Route>
 
-        <Route path="/cart" element={<CartPage />} />
-        <Route path="/events/:status" element={<EventPage />} />
+        <Route element={<PrivateRoute permissionLevel="user" />}>
+          <Route path="/cart" element={<CartPage />} />
+          <Route path="/payment" element={<PaymentPage />} />
+          <Route path="/payment/success" element={<OrderCompletePage />} />
+        </Route>
+
+        {/* <Route path="/events/:status" element={<EventPage />} /> */}
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
 

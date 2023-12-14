@@ -35,7 +35,7 @@ const OrderReceipt = ({ cartList, totalPrice }) => {
         <Button
           variant="dark"
           className="payment-button"
-          onClick={() => navigate("/cart")}
+          onClick={() => navigate("/payment")}
         >
           결제 계속하기
         </Button>

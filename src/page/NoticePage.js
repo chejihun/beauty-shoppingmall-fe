@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import Button from "react-bootstrap/Button";
 import "../style/notice.css"
@@ -8,14 +8,15 @@ import { postAction } from '../action/postAction';
 import ReactPaginate from "react-paginate";
 import queryString from 'query-string';
 
+
 const NoticePage = () => {
   const pageSize = 10
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const location = useLocation();
-  
   const queryParams = queryString.parse(location.search);
-  const { page=1, title="", category='공지사항' } = queryParams;
+  const [isLoading, setIsLoading] = useState(true);
+  const { page = 1, title = "", category = '공지사항' } = queryParams;
 
   const { postList, totalPostNum, page: currentPage } = useSelector((state) => ({
     postList: state.post.postList || [],
@@ -33,7 +34,7 @@ const NoticePage = () => {
 
   useEffect(() => {
     return () => dispatch(postAction.clearPost());
-  },[])
+  }, [])
 
   const handleWriteClick = () => {
     dispatch(postAction.setMode('new'));
@@ -41,14 +42,17 @@ const NoticePage = () => {
   }
 
   const handlePageClick = ({ selected }) => {
-    const params = new URLSearchParams({...queryParams, page: selected + 1})
+    const params = new URLSearchParams({ ...queryParams, page: selected + 1 })
     const query = params.toString();
     navigate("?" + query)
   };
 
   useEffect(() => {
+    setIsLoading(true);
     if (page !== queryParams.page || title !== queryParams.title || category !== queryParams.category) {
-      dispatch(postAction.getPostList({page, title, category, pageSize}));
+      dispatch(postAction.getPostList({ page, title, category, pageSize })).then(() => {
+        setIsLoading(false); 
+      });
     }
   }, [page, title, category]);
 
@@ -74,7 +78,9 @@ const NoticePage = () => {
         currentPage={currentPage}
         pageSize={pageSize}
         totalPostNum={totalPostNum}
+        isLoading={isLoading}
       />
+      {/* {isLoading && <LoadingSpinner />}  */}
 
       <ReactPaginate
         nextLabel=">"

@@ -17,11 +17,17 @@ const ModalSearch = ({ showModalSearch, setShowModalSearch  }) => {
   }
   
   const onCheckEnter = (event) => {
-    if (event.key === "Enter") {
-      const searchValue = event.target.value;
+   if (event.key === "Enter") {
+    const searchValue = event.target.value.trim(); // 검색어 앞뒤 공백 제거
+
+    if (searchValue) {
+      // 검색어가 존재하는 경우
       navigate(`/store?name=${searchValue}`);
-      setShowModalSearch(false);
+    } else {
+      navigate(`/store`);
     }
+    setShowModalSearch(false);
+  }
   };
   
   useEffect(() => {

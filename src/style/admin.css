@@ -1,5 +1,10 @@
 .setting-area {
   min-height: calc(100vh - 425px);
+  display: flex;
+  justify-content: center;
+}
+.admin-flex {
+  width: 76%;
 }
 .error-message{
   color: red;

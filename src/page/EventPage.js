@@ -6,9 +6,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { postAction } from '../action/postAction';
 import EventCard from '../component/eventCard';
 import { Button, Container, Row, Col } from "react-bootstrap";
+import LoadingSpinner from '../component/LoadingSpinner';
 
 const EventPage = () => {
 
+  const [loading, setLoading] = useState(false)
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { user } = useSelector((state) => (state.user))
@@ -22,6 +24,7 @@ const EventPage = () => {
   const showPost = (id) => navigate(`/post/${id}`);
   const [showCompleted, setShowCompleted] = useState(isCompleted);
   const [activeTab, setActiveTab] = useState('ongoing');
+  const [isLoading, setIsLoading] = useState(true);
 
   const handleWriteClick = () => {
     dispatch(postAction.setMode('new'));
@@ -51,7 +54,10 @@ const EventPage = () => {
   };
 
   useEffect(() => {
-    dispatch(postAction.getPostList({ category: '이벤트' }));
+     setIsLoading(true);
+    dispatch(postAction.getPostList({ category: '이벤트' })).then(() => {
+      setIsLoading(false);
+    });
   }, [dispatch, query]);
 
   useEffect(() => {
@@ -88,6 +94,8 @@ const EventPage = () => {
 
       <div className="event-area">
         <Row className="event-card-grid">
+          
+        {isLoading && <LoadingSpinner />} 
           {postList &&
             postList
               .filter((post) =>

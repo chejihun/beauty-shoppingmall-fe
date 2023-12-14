@@ -1,9 +1,10 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import { Navigate, Outlet } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const PrivateRoute = ({ permissionLevel }) => {
-  const user = { level: "admin" };
+  const user = useSelector((state) => state.user.user);
+
   const isAuthenticated =
     user?.level === permissionLevel || user?.level === "admin";
 

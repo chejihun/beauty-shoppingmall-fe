@@ -5,6 +5,7 @@ import { useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { productAction } from "../action/productAction";
 import { commonUiAction } from "../action/commonUiAction";
+import LoadingSpinner from '../component/LoadingSpinner';
 
 const StorePage = () => {
 
@@ -15,7 +16,8 @@ const StorePage = () => {
   const storeSort = ["최신순", "가격높은순", "가격낮은순"]
   const [sortTab, setSortTab] = useState("최신순")
   const [moreProducts, setMoreProducts] = useState(8);
-  
+  const [isLoading, setIsLoading] = useState(true);
+
   const handleSortClick = (item) => {
     setSortTab(item)
     if(item === "최신순") {
@@ -32,11 +34,10 @@ const StorePage = () => {
   };
 
   useEffect(() => {
-    dispatch(
-      productAction.getProductList({
-        name
-      })
-    )
+    setIsLoading(true);
+    dispatch(productAction.getProductList({name})).then(() => {
+      setIsLoading(false); 
+    });
   }, [query])
 
   return (
@@ -52,13 +53,19 @@ const StorePage = () => {
         </div>
       </Container>
 
+      
       <Container className="store-area">
         <div className="store-card">
-          {productList.slice(0, moreProducts).map((item) => (
+          {isLoading && <LoadingSpinner />} 
+          {productList.length > 0 ? (
+          productList.slice(0, moreProducts).map((item) => (
             <div key={item._id}>
               <ProductCard item={item} />
             </div>
-          ))}
+          ))
+          ): (
+            !isLoading && <div className="not-keyword">등록된 제품이 없습니다</div>
+          )}
         </div>
        
       </Container>

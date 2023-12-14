@@ -5,8 +5,7 @@ ul li {
   padding: 40px 0;
   background-color: #f9f9f9;
   display: flex;
-  /* justify-content: flex-end; */
-  flex-direction: column-reverse;
+  justify-content: center;
   color : #858585;
   height: 425px;
 }

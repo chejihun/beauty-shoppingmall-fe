@@ -116,7 +116,7 @@ const ProductDetail = () => {
         <div className="fixed-content">
           <h3>제품과 비슷한 추천상품</h3>
           <p>이 상품을 구매한 고객들이 함께 본 상품입니다.</p>
-          <Row className="store-card">
+          <Row className="detail-card-area">
             {filteredProductList.slice(0, 4).map((item) => (
               <Col key={item._id}>
                 <div className="pro-detail-card" onClick={() => showProduct(item._id)}>

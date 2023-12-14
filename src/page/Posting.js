@@ -10,6 +10,7 @@ import CloudinaryUploadWidget from "../utils/CloudinaryUploadWidge";
 
 const Posting = () => {
   const location = useLocation();
+  const user = useSelector((state) => (state.user.user));
   const { selectedCategory } = location.state || { selectedCategory: '' };
   const [category, setCategory] = useState(selectedCategory);
   const { state } = useLocation();
@@ -86,6 +87,10 @@ const Posting = () => {
       setImage(image)
     }
   }, [state]);
+
+  if (!user) {
+    navigate("/login")
+  }
 
   const modules = {
     clipboard: {

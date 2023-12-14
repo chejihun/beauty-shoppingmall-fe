@@ -1,16 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Table from "react-bootstrap/Table";
 import { useNavigate } from "react-router-dom";
 import "../style/notice.css"
+import LoadingSpinner from '../component/LoadingSpinner';
 
-const PostTable = ({ noticeHeader, postList, currentPage, pageSize, totalPostNum}) => {
+const PostTable = ({ noticeHeader, postList, currentPage, pageSize, totalPostNum, isLoading}) => {
 
   const navigate = useNavigate();
-  
   const showPost = (id) => {
     navigate(`/post/${id}`);
   };
 
+  
   return (
     <div>
       <Table className='notice-table'>
@@ -22,7 +23,9 @@ const PostTable = ({ noticeHeader, postList, currentPage, pageSize, totalPostNum
           </tr>
         </thead>
 
+
         <tbody className='tbody'>
+          {isLoading && <LoadingSpinner />} 
           {postList && (
             postList.map((post, index) => (
               <tr key={index} className='postcard' onClick={() => showPost(post._id)}>

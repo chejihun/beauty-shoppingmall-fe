@@ -14,17 +14,17 @@ import SearchBox from "../component/SearchBox";
 const AdminPage = () => {
 
   const navigate = useNavigate();
-  const { productList, totalPageNum } = useSelector(state => state.product)
+  const { productList, totalPageNum, page:cu } = useSelector(state => state.product)
   const dispatch = useDispatch();
   const [query, setQuery] = useSearchParams();
   const [showDialog, setShowDialog] = useState(false);
   const [mode, setMode] = useState("new");
+  const user = useSelector((state) => (state.user.user));
   const [searchQuery, setSearchQuery] = useState({
     page: query.get("page") || 1,
     name: query.get("name") || "",
   });
-  const user = useSelector((state) => (state.user.user));
-  console.log("user", user)
+
 
   const tableHeader = [
     "#",
@@ -71,7 +71,7 @@ const AdminPage = () => {
 
   return (
     <div className="setting-area">
-      <Container>
+      <div className="admin-flex">
         <div className="admin-search-area">
           <Button onClick={handleClickNewItem}>
             상품 추가하기
@@ -115,7 +115,7 @@ const AdminPage = () => {
         />
     
       
-      </Container>
+      </div>
 
       <NewItemDialog
         mode={mode}
