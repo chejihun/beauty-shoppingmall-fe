@@ -14,12 +14,15 @@ import SearchBox from "../component/SearchBox";
 const AdminPage = () => {
 
   const navigate = useNavigate();
-  const { productList, totalPageNum, page:cu } = useSelector(state => state.product)
+  const { productList, totalPageNum } = useSelector(state => state.product)
   const dispatch = useDispatch();
   const [query, setQuery] = useSearchParams();
   const [showDialog, setShowDialog] = useState(false);
   const [mode, setMode] = useState("new");
   const user = useSelector((state) => (state.user.user));
+  const pageSize = 10; // 페이지 사이즈는 10으로 가정
+  const totalProduct = totalPageNum * pageSize;
+
   const [searchQuery, setSearchQuery] = useState({
     page: query.get("page") || 1,
     name: query.get("name") || "",
@@ -90,13 +93,16 @@ const AdminPage = () => {
           data={productList}
           deleteItem={deleteItem}
           openEditForm={openEditForm}
+          searchQuery={searchQuery}
+          pageSize={pageSize}
+          totalProduct={totalProduct}
         />
 
         <ReactPaginate
           nextLabel=">"
           onPageChange={handlePageClick}
           pageRangeDisplayed={10}
-          pageCount={totalPageNum}
+          pageCount={totalPageNum} //전체 페이지
           forcePage={searchQuery.page - 1} // 1페이지면 2임 여긴 한개씩 +1 해야함
           previousLabel="<"
           renderOnZeroPageCount={null}

@@ -80,7 +80,6 @@ const NoticePage = () => {
         totalPostNum={totalPostNum}
         isLoading={isLoading}
       />
-      {/* {isLoading && <LoadingSpinner />}  */}
 
       <ReactPaginate
         nextLabel=">"

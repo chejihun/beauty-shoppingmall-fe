@@ -5,7 +5,7 @@ import { currencyFormat } from "../utils/number";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { FiEdit } from "react-icons/fi";
 
-const ProductTable = ({ header, data, deleteItem, openEditForm }) => {
+const ProductTable = ({ header, data, deleteItem, openEditForm, searchQuery, totalProduct, pageSize }) => {
   return (
     <div className="overflow-x">
       <Table striped bordered hover>
@@ -20,7 +20,7 @@ const ProductTable = ({ header, data, deleteItem, openEditForm }) => {
           {data.length > 0 ? (
             data.map((item, index) => (
               <tr key={index}>
-                <th>{index}</th>
+                <th>{totalProduct - (pageSize * (searchQuery.page - 1) + index)}</th>
                 <th>{item.sku}</th>
                 <th style={{ minWidth: "100px" }}>{item.name}</th>
                 <th>{currencyFormat(item.price)}</th>
