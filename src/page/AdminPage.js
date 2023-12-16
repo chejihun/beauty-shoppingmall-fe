@@ -20,7 +20,7 @@ const AdminPage = () => {
   const [showDialog, setShowDialog] = useState(false);
   const [mode, setMode] = useState("new");
   const user = useSelector((state) => (state.user.user));
-  const pageSize = 10; // 페이지 사이즈는 10으로 가정
+  const pageSize = 10;
   const totalProduct = totalPageNum * pageSize;
 
   const [searchQuery, setSearchQuery] = useState({

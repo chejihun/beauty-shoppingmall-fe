@@ -23,6 +23,7 @@ const NoticePage = () => {
     totalPostNum: state.post.totalPostNum || 0,
     page: state.post.page || 1,
   }));
+  
   const { user } = useSelector((state) => (state.user))
 
   const noticeHeader = [
@@ -86,7 +87,7 @@ const NoticePage = () => {
         onPageChange={handlePageClick}
         pageRangeDisplayed={5}
         pageCount={totalPageNum}
-        forcePage={currentPage - 1} // 1페이지면 2임 여긴 한개씩 +1 해야함
+        forcePage={currentPage - 1}
         previousLabel="<"
         renderOnZeroPageCount={null}
         pageClassName="page-item"
