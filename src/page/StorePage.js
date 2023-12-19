@@ -19,44 +19,44 @@ const StorePage = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   const handleSortClick = (item) => {
-    setSortTab(item);
-    dispatch(productAction.getProductList({ name, sort: item }))
+    // setSortTab(item);
+    // dispatch(productAction.getProductList({ name, sort: item }))
 
-    //   // 정렬 조건에 따라서 서버에서 정렬
-    // if (item) {
-    //   if (item === "최신순") {
-    //     query.sort({ createdAt: -1 });
-    //   } else if (item === "가격높은순") {
-    //     query.sort({ price: -1 });
-    //   } else if (item === "가격낮은순") {
-    //     query.sort({ price: 1 });
-    //   }
-    // } else {
-    //   query.sort({ createdAt: -1 });
-    // }
+      // 정렬 조건에 따라서 서버에서 정렬
+    if (item) {
+      if (item === "최신순") {
+        query.sort({ createdAt: -1 });
+      } else if (item === "가격높은순") {
+        query.sort({ price: -1 });
+      } else if (item === "가격낮은순") {
+        query.sort({ price: 1 });
+      }
+    } else {
+      query.sort({ createdAt: -1 });
+    }
   };
 
   const handleShowMoreClick = () => {
     setMoreProducts((prev) => prev + 8);
   };
 
-  // 기존 프론트에서 정렬하는 방식
-  // useEffect(() => {
-  //   setIsLoading(true);
-  //   dispatch(productAction.getProductList({name})).then(() => {
-  //     setIsLoading(false); 
-  //   });
-  // }, [query])
+  //기존 프론트에서 정렬하는 방식
+  useEffect(() => {
+    setIsLoading(true);
+    dispatch(productAction.getProductList({name})).then(() => {
+      setIsLoading(false); 
+    });
+  }, [query])
 
   //백에서 정렬 데이터 받아서 적용 형식
   // 문제 불러오는 데이터의 일부 이미지 사이즈가 변경되는 현상 발생
   //로딩스피너는 문제가 있음
   // sortTab이 존재할 때만 데이터 요청?
-  useEffect(() => {
-    if (sortTab) { 
-      dispatch(productAction.getProductList({ name, sort: sortTab }))
-    }
-  }, [sortTab]);
+  // useEffect(() => {
+  //   if (sortTab) { 
+  //     dispatch(productAction.getProductList({ name, sort: sortTab }))
+  //   }
+  // }, [sortTab]);
 
   return (
     <div className="st-flex">

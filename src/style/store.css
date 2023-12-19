@@ -1,11 +1,11 @@
 /* product card */
 .card {
+  margin: 0 auto;
   width: 98%;
   max-height: 550px;
   margin: 0 5px 30px 5px;
   padding-bottom: 20px;
   border: none;
-  background-color: aqua;
 }
 .card-img {
   width: 100%;
@@ -80,7 +80,7 @@
 .store-area {
   display: flex;
   justify-content: center;
-  min-height: calc(100vh - 425px);
+  /* min-height: calc(100vh - 425px); */
 }
 .store-card {
   display: grid;
