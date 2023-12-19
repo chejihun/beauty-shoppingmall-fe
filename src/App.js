@@ -16,7 +16,7 @@ import { useDispatch } from "react-redux";
 import React, { useEffect } from "react";
 import AdminPage from "./page/AdminPage";
 import ProductDetail from "./page/ProductDetail";
-import CartPage from "./page/CartPage";
+import CartPage from "./page/CartListPage"
 import Posting from "./page/Posting";
 import Post from "./page/Post";
 import Footer from "./component/Footer";
