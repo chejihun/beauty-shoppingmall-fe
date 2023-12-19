@@ -1,9 +1,13 @@
 import axios from "axios";
 
-const LOCAL_BACKEND = process.env.REACT_APP_BACKEND_PROXY;
-// const LOCAL_BACKEND = process.env.REACT_APP_LOCAL_BACKEND;
+
+const PROXY_URL = process.env.REACT_APP_BACKEND_PROXY
+const LOCAL_URL = process.env.REACT_APP_LOCAL_BACKEND
+const BASE_URL = process.env.NODE_ENV === "production" ? LOCAL_URL : PROXY_URL;
+
+// 프론트를 프론트로 back은 public
 const api = axios.create({
-  baseURL: LOCAL_BACKEND,
+  baseURL: BASE_URL,
   headers: {
     "Content-Type": "application/json",
     authorization: `Bearer ${sessionStorage.getItem("token")}`,
