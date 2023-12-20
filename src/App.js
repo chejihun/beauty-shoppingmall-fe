@@ -34,39 +34,37 @@ const App = () => {
   }, []);
 
   return (
-    <div className="App">
+    <>
+      <div className="App">
+        <Navbar />
+        <ToastMessage />
 
-      <Navbar />
-      <ToastMessage />
+        <Routes>
+          <Route path="/" element={<MainHomePage />} />
+          <Route path={ROUTE_PATH.BRAND} element={<BrandPage />} />
+          <Route path={ROUTE_PATH.STORE} element={<StorePage />} />
+          <Route path="/product/:id" element={<ProductDetail />} />
+          <Route path={ROUTE_PATH.EVENT} element={<EventPage />} />
+          <Route path={ROUTE_PATH.NOTICE} element={<NoticePage />} />
+          <Route path="/post/:id" element={<Post />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
 
-      <Routes>
-        <Route path="/" element={<MainHomePage />} />
-        <Route path={ROUTE_PATH.BRAND} element={<BrandPage />} />
-        <Route path={ROUTE_PATH.STORE} element={<StorePage />} />
-        <Route path="/product/:id" element={<ProductDetail />} />
-        <Route path={ROUTE_PATH.EVENT} element={<EventPage />} />
-        <Route path={ROUTE_PATH.NOTICE} element={<NoticePage />} />
-        <Route path="/post/:id" element={<Post />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
+          <Route element={<PrivateRoute permissionLevel="admin" />}>
+            <Route path="/admin" element={<AdminPage />} />
+            <Route path="/posting" element={<Posting />} />
+          </Route>
 
-        <Route element={<PrivateRoute permissionLevel="admin" />}>
-          <Route path="/admin" element={<AdminPage />} />
-          <Route path="/posting" element={<Posting />} />
-        </Route>
-
-        <Route element={<PrivateRoute permissionLevel="user" />}>
-          <Route path="/cart" element={<CartPage />} />
-          <Route path="/payment" element={<PaymentPage />} />
-          <Route path="/payment/success" element={<OrderCompletePage />} />
-        </Route>
-
-        {/* <Route path="/events/:status" element={<EventPage />} /> */}
-        <Route path="*" element={<NotFoundPage />} />
-      </Routes>
-
+          <Route element={<PrivateRoute permissionLevel="user" />}>
+            <Route path="/cart" element={<CartPage />} />
+            <Route path="/payment" element={<PaymentPage />} />
+            <Route path="/payment/success" element={<OrderCompletePage />} />
+          </Route>
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+      </div >
       <Footer />
-    </div >
+    </>
   );
 
 }
