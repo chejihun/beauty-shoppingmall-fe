@@ -43,6 +43,7 @@
  .st-flex {
   width: 80%;
   margin: 0 auto;
+  min-height: calc(100vh - 425px);
  }
  .store-sort-area {
   margin: 80px auto 50px auto;
