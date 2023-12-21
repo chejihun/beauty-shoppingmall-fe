@@ -19,7 +19,6 @@
   border-top-left-radius: 5px;
 }
 .onactive {
-  /* border-top: 5px solid gold; */
   border: 1px solid #a1a1a1;
   border-bottom: none;
   color:#000;
