@@ -45,6 +45,7 @@ const App = () => {
           <Route path={ROUTE_PATH.STORE} element={<StorePage />} />
           <Route path="/product/:id" element={<ProductDetail />} />
           <Route path={ROUTE_PATH.EVENT} element={<EventPage />} />
+          <Route path="/events/:status" element={<EventPage />} />
           <Route path={ROUTE_PATH.NOTICE} element={<NoticePage />} />
           <Route path="/post/:id" element={<Post />} />
           <Route path="/login" element={<LoginPage />} />
