@@ -47,6 +47,7 @@
   max-width: 420px;
   margin-top: 10px;
   border: none;
+  cursor: pointer;
 }
 .event-img {
   width: 100%;
