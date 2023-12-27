@@ -96,6 +96,7 @@
 .home-event-card-grid {
   display: grid;
   grid-template-columns: repeat(4, auto);
+  width: 99%;
 }
 .home-event-main-title {
  font-family:'Times New Roman', Times, serif;
@@ -159,6 +160,7 @@
   }
   .home-event-img {
     height: 350px;
+    width: 98%;
   }
   .home-event-main-title {
     margin-top: 50px;
