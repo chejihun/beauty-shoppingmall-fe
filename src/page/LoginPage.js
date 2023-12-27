@@ -35,7 +35,7 @@ const LoginPage = () => {
             </div>
           )}
           <Form.Group className="login-form-id" controlId="formBasicEmail">
-            <Form.Label>Email</Form.Label>
+            <Form.Label className="m-title-none">Email</Form.Label>
             <Form.Control
               type="email"
               placeholder="이메일을 입력해주세요"
@@ -46,7 +46,7 @@ const LoginPage = () => {
           </Form.Group>
 
           <Form.Group className="login-form-id" controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
+            <Form.Label className="m-title-none">Password</Form.Label>
             <Form.Control
               type="password"
               placeholder="비밀번호를 입력해주세요"

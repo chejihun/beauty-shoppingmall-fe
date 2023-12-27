@@ -4,7 +4,7 @@
   align-items: center;
   height: 100vh;
   padding-bottom: 50px;
-  min-height: calc(100vh - 425px);
+  /* min-height: calc(100vh - 425px); */
 }
 .login-form {
   width: 40%;
@@ -66,5 +66,14 @@
 }
 
 @media screen and (max-width: 768px) {
-
+  .login-area, .register-area {
+    margin: 80px auto;
+    padding-bottom: 0px;
+  }
+  .m-title-none {
+    display: none;
+  }
+  .login-btn {
+    margin-bottom: 30px;
+  }
 }
