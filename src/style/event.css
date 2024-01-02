@@ -96,7 +96,7 @@
 .home-event-card-grid {
   display: grid;
   grid-template-columns: repeat(4, auto);
-  width: 99%;
+  width: 80%;
 }
 .home-event-main-title {
  font-family:'Times New Roman', Times, serif;
@@ -110,7 +110,8 @@
  }
 .home-event-card {
   width: 100%;
-  max-width: 420px;
+  margin: 0, auto;
+  max-width: 460px;
   margin-top: 10px;
   border: none;
 }
@@ -135,7 +136,10 @@
   margin-bottom: 20px;
 }
 .col-ma {
+  display: flex;
+  justify-content: center;
   padding: 6px;
+  margin: 0 auto;
 }
 
 /* 이벤트 영역 배너 */
