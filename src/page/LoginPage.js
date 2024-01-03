@@ -59,6 +59,7 @@ const LoginPage = () => {
             <Button variant="danger" type="submit" className="login-btn">
               로그인
             </Button>
+            
             <div className="register-move">
               <h4>회원이 아니신가요? </h4>
               <p>회원가입을 통해 주문 내역을 확인하고, 위시리스트에 관심 제품을 저장하거나, 저장된 정보를 사용하여 더 빠른 온라인 결제 경험을 즐기실 수 있습니다.</p>

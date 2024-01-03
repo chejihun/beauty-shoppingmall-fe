@@ -8,6 +8,7 @@ ul li {
   justify-content: center;
   color : #858585;
   height: 425px;
+  z-index: 0;
 }
 .footer-grid {
   display: grid;
@@ -60,6 +61,8 @@ ul li {
 @media all and (min-width:520px) and (max-width:900px) {
   .footer-area{
     padding: 40px;
+    height: 600px;
+    display: flex;
   }
   .fs-title-3  p:nth-child(4),
   .fs-title-3  p:nth-child(5) {
@@ -70,6 +73,7 @@ ul li {
 @media all and (max-width:519px) {
   .footer-area{
     padding: 40px;
+    height: 600px;
   }
   .fs-title-3  p:nth-child(3),
   .fs-title-3  p:nth-child(4),

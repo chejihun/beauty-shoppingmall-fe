@@ -77,7 +77,7 @@
   background-color: transparent;
   outline: none;
   border: none;
-  z-index: 99;
+  z-index: 5;
 }
 .custom-prev-arrow {
   left: -6%;
