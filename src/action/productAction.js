@@ -27,7 +27,7 @@ const getProductList = (query) => async (dispatch) => {
     if (response.status !== 200) {
       throw new Error(response.error)
     }
-    
+    console.log("Received product list from the server:", response.data);
     dispatch({ type: types.PRODUCT_GET_SUCCESS, payload: response.data })
     
   } catch (error) {

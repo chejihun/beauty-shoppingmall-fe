@@ -19,29 +19,35 @@ const StorePage = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   const handleSortClick = (item) => {
-    if (item) {
-      if (item === "최신순") {
-        query.sort({ createdAt: -1 });
-      } else if (item === "가격높은순") {
-        query.sort({ price: -1 });
-      } else if (item === "가격낮은순") {
-        query.sort({ price: 1 });
-      }
-    } else {
-      query.sort({ createdAt: -1 });
+    setSortTab(item)
+    if(item === "최신순") {
+      return productList.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+    }  if (item === "가격높은순") {
+      return productList.sort((a, b) => b.price - a.price);
+    }if (item === "가격낮은순") {
+      return productList.sort((a, b) => a.price - b.price);
     }
+    setSortTab(item);
+    dispatch(productAction.getProductList({ name, sort: item }))
   };
+
 
   const handleShowMoreClick = () => {
     setMoreProducts((prev) => prev + 8);
   };
 
   useEffect(() => {
-    setIsLoading(true);
-    dispatch(productAction.getProductList({name})).then(() => {
-      setIsLoading(false); 
-    });
-  }, [query])
+  setIsLoading(true);
+  dispatch(productAction.getProductList({ name })).then(() => {
+    setIsLoading(false);
+  });
+}, [query]);
+
+useEffect(() => {
+  console.log("Current sortTab:", sortTab);
+  console.log("Current productList:", productList);
+}, [sortTab, productList]);
+  
 
 
   return (
